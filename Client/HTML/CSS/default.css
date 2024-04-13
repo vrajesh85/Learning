@@ -1,0 +1,17 @@
+a {
+    background-color:#f44336; 
+    border-collapse: collapse;
+    text-align: center;
+    padding:20px 25px;
+    display:inline-block;
+    text-decoration: none;
+}
+
+a:hover{
+    color:white;
+    text-decoration: underline;
+}
+
+a:visited{
+    color:green;   
+}
