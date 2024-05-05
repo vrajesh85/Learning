@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using PracticeApp.Concurrency;
 using System.Threading.Tasks;
 
 namespace PracticeApp
@@ -22,6 +23,7 @@ namespace PracticeApp
         static Thread t2;
         static Thread t3;
         static object _locker = new object();
+
         static void Main(string[] args)
         {
             #region Delegates
@@ -95,103 +97,120 @@ namespace PracticeApp
 
             #region MultiThreading
 
-                #region Joins & Signaling
+            #region Joins & Signaling
 
-                //thread1 = new Thread(ThreadProc);
-                //thread1.Name = "Thread1";
-                //thread1.Start();
+            //thread1 = new Thread(ThreadProc);
+            //thread1.Name = "Thread1";
+            //thread1.Start();
 
-                //thread2 = new Thread(ThreadProc);
-                //thread2.Name = "Thread2";
-                //thread2.Start();
+            //thread2 = new Thread(ThreadProc);
+            //thread2.Name = "Thread2";
+            //thread2.Start();
 
-                //firstThread = new Thread(PrintX);
-                //secondThread = new Thread(PrintY);
+            //firstThread = new Thread(PrintX);
+            //secondThread = new Thread(PrintY);
 
-                //firstThread.Name = "First";
-                //secondThread.Name = "Second";
+            //firstThread.Name = "First";
+            //secondThread.Name = "Second";
 
-                //firstThread.Start();
-                //secondThread.Start();
+            //firstThread.Start();
+            //secondThread.Start();
 
-                //t1 = new Thread(Increment);
-                //t2 = new Thread(Increment);
-                //t3 = new Thread(Increment);
+            //t1 = new Thread(Increment);
+            //t2 = new Thread(Increment);
+            //t3 = new Thread(Increment);
 
-                //t1.Name = "T1";
-                //t2.Name = "T2";
-                //t3.Name = "T3";
+            //t1.Name = "T1";
+            //t2.Name = "T2";
+            //t3.Name = "T3";
 
-                //t1.Start();
-                //t1.Join();
+            //t1.Start();
+            //t1.Join();
 
-                //t2.Start();
-                //t2.Join();
+            //t2.Start();
+            //t2.Join();
 
-                //t3.Start();
-                //t3.Join();
+            //t3.Start();
+            //t3.Join();
 
-                #endregion
+            #endregion
 
-                #region Shared State Without Static
-                //int limit = 10;
-                //bool isDone = false;
-                //firstThread = new Thread(() => WriteX(limit));
-                //secondThread = new Thread(() => WriteY(limit));
-                //firstThread.Name = "First Thread";
-                //secondThread.Name = "Second Thread";
-                //firstThread.Start();
-                //secondThread.Start();
+            #region Shared State Without Static
+            //int limit = 10;
+            //bool isDone = false;
+            //firstThread = new Thread(() => WriteX(limit));
+            //secondThread = new Thread(() => WriteY(limit));
+            //firstThread.Name = "First Thread";
+            //secondThread.Name = "Second Thread";
+            //firstThread.Start();
+            //secondThread.Start();
 
-                //Console.WriteLine($"current thread is {Thread.CurrentThread.Name} and it's state is {Thread.CurrentThread.ThreadState}");
-                //Console.WriteLine($"first thread is {firstThread.Name} and it's state is {firstThread.ThreadState}");
-                //  WriteX(limit);
-                #endregion
+            //Console.WriteLine($"current thread is {Thread.CurrentThread.Name} and it's state is {Thread.CurrentThread.ThreadState}");
+            //Console.WriteLine($"first thread is {firstThread.Name} and it's state is {firstThread.ThreadState}");
+            //  WriteX(limit);
+            #endregion
 
-                #region Shared State With Static
-                //new Thread(() => WriteY(limit)).Start();
-                //WriteX(limit);
-                #endregion
+            #region Shared State With Static
+            //new Thread(() => WriteY(limit)).Start();
+            //WriteX(limit);
+            #endregion
 
-                #region Basic Locking
-                //new Thread(Go).Start();
-                //Go();
-                #endregion
+            #region Basic Locking
+            //new Thread(Go).Start();
+            //Go();
+            #endregion
 
-                #region Other Examples
-                //for(int i = 0; i < 5; i++)
-                //{
-                //    //int temp = i;
-                //    new Thread(() => Console.Write(i)).Start();
-                //}
+            #region Other Examples
+            //for(int i = 0; i < 5; i++)
+            //{
+            //    //int temp = i;
+            //    new Thread(() => Console.Write(i)).Start();
+            //}
 
-                //string str = "A";
-                //var t1 = new Thread(() => Console.WriteLine(str));
+            //string str = "A";
+            //var t1 = new Thread(() => Console.WriteLine(str));
 
-                //str = "B";
-                //var t2 = new Thread(() => Console.WriteLine(str));
-                //t1.Start();
-                //t2.Start();
+            //str = "B";
+            //var t2 = new Thread(() => Console.WriteLine(str));
+            //t1.Start();
+            //t2.Start();
 
-                //try
-                //{
-                //    new Thread(ThrowNull).Start();
-                //}
-                //catch(Exception ex)
-                //{
-                //    //We never reach here..Reason : Every thread has an independent execution path and hence the above thread gets
-                //    //                     struck in a method that throws null and it doesn't come back here
-                //    Console.WriteLine("Exception");
-                //}
-                #endregion
+            //try
+            //{
+            //    new Thread(ThrowNull).Start();
+            //}
+            //catch(Exception ex)
+            //{
+            //    //We never reach here..Reason : Every thread has an independent execution path and hence the above thread gets
+            //    //                     struck in a method that throws null and it doesn't come back here
+            //    Console.WriteLine("Exception");
+            //}
+            #endregion
 
-                #region Background threads
-                //Thread worker = new Thread(() => Console.ReadLine());
-                //if(args.Length > 0)
-                //worker.IsBackground = true;
-                //worker.Start();
+            #region Background threads
+            //Thread worker = new Thread(() => Console.ReadLine());
+            //if(args.Length > 0)
+            //worker.IsBackground = true;
+            //worker.Start();
 
-                #endregion
+            #endregion
+
+            #endregion
+
+            #region Tasks
+
+            var task = new Tasks();
+            Task resultTask = task.TaskRun();
+            resultTask.Start();
+            resultTask.Wait();
+
+            //TaskStatus isTrue = resultTask.Status;
+
+            //var status = resultTask.Status;
+            //var isCompleted = $"status is {resultTask.IsCompleted}";
+
+            //Console.WriteLine($"is task completed {resultTask.IsCompleted} and " +
+            //  $"status is {resultTask.Status} at time {DateTime.Now.Ticks}");
 
             #endregion
         }

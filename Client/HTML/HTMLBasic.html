@@ -8,12 +8,26 @@
             body {
                 background-color:aliceblue;
             }
+            .scrollabletable {
+                height:200px;
+                overflow-y:auto;
+            }
+
+            .fixed-header{
+               position:sticky;
+               top:0;
+               background-color: aliceblue;
+                /*  z-index: 1; */
+            }
+
+            
+
         </style>
         <link rel="stylesheet" href="./CSS/default.css" />
     </head>
     <body>
         <center>
-    <div>
+    <div>      
         <a href="https://www.google.com" target="_blank">Google</a>
         <a href="#C4">Jump to Chapter 4</a>
         <a href="#C10">Jump to Chapter 10</a>
@@ -94,31 +108,136 @@
 </center>   
 
 <h2>thead Tag </h2>
-<table>
+<div class="scrollabletable">
+    <table>
 
-    <!-- thead tag starts from here -->
-    <thead>
-        <tr>
-            <th>S.No</th> 
-            <th>Book</th> 
-            <th>Author</th> 
-        </tr>
-    </thead>
-    <!-- thead tag ends here -->
+        <!-- thead tag starts from here -->
+        <thead class="fixed-header">
+            <tr>
+                <th>S.No</th> 
+                <th>Book</th> 
+                <th>Author</th> 
+            </tr>
+        </thead>
+        <!-- thead tag ends here -->
+    
+        <tbody>
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+    
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+            <tr> 
+                <td>1</td> 
+                <td>Intro to C++</td>  
+                <td>E Bala.</td> 
+            </tr> 
+            <tr> 
+                <td>2</td> 
+                <td>Programming Fundamentals</td> 
+                <td>GFG</td> 
+            </tr> 
+    
+        </tbody>
+    </table>
+</div>
 
-    <tbody>
-        <tr> 
-            <td>1</td> 
-            <td>Intro to C++</td>  
-            <td>E Bala.</td> 
-        </tr> 
-        <tr> 
-            <td>2</td> 
-            <td>Programming Fundamentals</td> 
-            <td>GFG</td> 
-        </tr> 
-    </tbody>
-</table>
 
 <h2>without thead tag</h2>
 <table>
@@ -136,10 +255,127 @@
         <td>E Bala.</td> 
     </tr> 
     <tr> 
+        <th>
+            header 1
+        </th>
+        <th>
+            header 2
+        </th>
         <td>2</td> 
         <td>Programming Fundamentals</td> 
         <td>GFG</td> 
     </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+    <tr> 
+        <td>1</td> 
+        <td>Intro to C++</td>  
+        <td>E Bala.</td> 
+    </tr> 
+    <tr> 
+        <td>2</td> 
+        <td>Programming Fundamentals</td> 
+        <td>GFG</td> 
+    </tr>    
+
 </table>
 
 Unordered lists

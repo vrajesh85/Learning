@@ -7,18 +7,37 @@
  
     <style>
         #myContainerDiv  {
-            width:42%;            
-            /* display: flex; */
+          width:42%;
+              /* overflow:auto; */
+            display:flex;
         }
+
         #myContainerDiv > div {
             width:14%;  
-            display:inline-block;                              
+            /* display:inline-block; */
+            /* float:left; */
         }
+
+        #myGridContainerDiv {
+            display: grid;
+            grid-template-columns: 33% 33% 33%;
+        }
+
+        #hTMLBasicDiv{
+            display: inline-block;
+            padding:10px;
+        }
+        
     </style>
        <link rel="stylesheet" href="./CSS/default.css" />
 </head>
 <body>
+
     <div id="myContainerDiv">
+    <div style="width: 20%;">
+        <span>Click here to load HTML Basic page</span>
+        <a href="HTMLBasic.html" target="iframe_a">HTML Basic</a>   
+    </div>
     <div>
         <a href="https://www.google.com">Google</a>
     </div>
@@ -29,6 +48,31 @@
         <a href="https://www.eenadu.net">Eenadu</a>
     </div>
 </div>
+<div id="myGridContainerDiv">
+ <div style="background-color:#FFF4A3;">
+    <h2>Hyderabad</h2>
+    <p>Hyderabad is the capital city of Telangana.</p>
+    <p>Hyderabad has over 13 million inhabitants.</p>
+ </div>
+ <div style="background-color:#FFC0C7;">
+    <h2>Bangalore</h2>
+    <p>Bangalore is the capital city of Karnataka.</p>
+    <p>Bangalore has over 13 million inhabitants.</p>
+ </div>
+ <div style="background-color:#D9EEE1;">
+    <h2>Chennai</h2>
+    <p>Chennai is the capital city of TamilNadu.</p>
+    <p>Chennai has over 13 million inhabitants.</p>
+ </div>
+
+</div>
+
+<h2>
+    IFrames
+</h2>
+
+<iframe src="https://www.eenadu.net" title="Youtube" name="iframe_a" style="border:none;width: 800px;height: 800px;"></iframe>
+
 </body>
 
 </html>

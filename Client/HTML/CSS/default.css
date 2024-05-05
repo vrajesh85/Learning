@@ -2,7 +2,7 @@ a {
     background-color:#f44336; 
     border-collapse: collapse;
     text-align: center;
-     padding:10px;
+    padding:10px;
     display:inline-block;
     text-decoration: none;
 }
@@ -15,6 +15,7 @@ a:hover{
 a:visited{
     color:green;   
 }
+
 
 table, th, td {
     border : 1px solid white;

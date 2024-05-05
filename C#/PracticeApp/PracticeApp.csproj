@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Concurrency\Threading.cs" />
+    <Compile Include="Concurrency\Tasks.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Program.cs" />
