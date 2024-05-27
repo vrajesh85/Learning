@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>
+            CSS Basic 
+    </title>
+    <style>
+        body {
+            background-color: aliceblue;
+        }
+
+        .moreopacity{
+            opacity: 1;
+        }
+
+        .mediumopacity{
+            opacity: 0.5;
+        }
+        .lessopacity{
+            opacity: 0.1;
+        }
+
+        .grid{
+            display: grid;
+            grid-template-columns: 10% 10% 10%;
+        }
+
+        /* a:link{
+            padding: 1rem;
+            border-collapse: collapse;
+            background-color: red;
+        } */
+
+        .searchText {
+            display: block;
+        }
+
+        p.bordertest {
+            border-style:dotted dashed solid double;
+            border-color:blue;
+            width: 5%;
+        }
+        
+        .box {
+            display: none;
+            transition: transform 1s, height 5s;
+        }
+
+        .box.expand {
+            transform: scale(1);            
+        }
+        
+
+        /* div#heartBeatInfo:target {
+            display: block;
+            transition:all 0.5s linear;
+        } */
+
+        div.heartBeatLog {
+            display: flex;           
+        }
+       
+        .down {
+            background: transparent url(../HTML/Images/sort_down.png);      
+            display: flex;      
+            width: 1.3em;
+            height: 1.4em;
+            cursor: pointer;
+            border: none;
+        }
+
+        .up {
+            background: transparent url(../HTML/Images/sort_up.png);      
+            display: flex;      
+            width: 1.3em;
+            height: 1.4em;
+            cursor: pointer;
+            border: none;
+        }
+
+
+        /* img:hover + div {      
+            display:block;                             
+        }  */
+</style>   
+
+</head>
+<body>
+    <p>
+        Opacity --> It indicates the transparency of an element. It can range from 0.1 to 1 with lower value being more transparent.
+    </p> 
+     <div class="grid">
+        <div>
+            <a class="moreopacity" href="">More Opacity</a>
+        </div>
+        <div>
+            <a class="mediumopacity" href="">Medium Opacity</a>
+        </div>
+        <div>
+            <a class="lessopacity" href="">Less Opacity</a>
+        </div>
+     </div>
+     <br /><br />
+     Borders and Margins
+     <p class="bordertest">Click Me</p>
+     <table border="2">
+        <thead>
+            <tr>
+                <th> 
+                    Date Time
+                </th>
+                <th>
+                    Second column header
+                </th>
+            </tr>            
+        </thead>
+        <tr>
+            <td> 
+                <div class="heartBeatLog">
+                    <div>
+                        <span id="datetime"> 09-05-2024 1:30:00 </span>    
+                    </div>
+                    <div class="showLog">
+                        <img class="down" id="sort" onclick="onClickImage(this)"> </img>                                          
+                    </div>                     
+                </div>               
+                <div id="heartBeatInfo" class="box">
+                    <p>Last Heartbeat time 1</p>
+                    <p>Last Heartbeat time 2</p>
+                    <p>Last Heartbeat time 3</p>
+                    <p>Last Heartbeat time 4</p>
+                    <p>Last Heartbeat time 5</p>
+                    <p>Last Heartbeat time 6</p>
+                </div>                           
+            </td>
+            <td>
+                Second column
+            </td>
+        </tr>
+      
+     </table>
+     <script type="text/javascript">
+        var onClickImage = function(element) {
+            console.log('click event working');
+            var divElement = document.getElementById('heartBeatInfo');
+            var imgElement = document.getElementById('sort');
+            if (element.className == 'down') 
+            {
+                divElement.style = "display:block";
+                divElement.classList.toggle('expand');
+
+                imgElement.classList.remove('down');              
+                imgElement.classList.add('up');
+            }
+            else 
+            {
+                imgElement.classList.remove('up');              
+                imgElement.classList.add('down');
+                divElement.style = "display:none";
+            }
+                                   
+        };
+    </script>
+</body>
+</html>

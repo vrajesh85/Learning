@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Basic Javascript
+        </title>
+        <style>
+
+            a {
+                width: 2em;
+            }
+                   
+        .down {
+            background: transparent url(../HTML/Images/sort_down.png);      
+            display: flex;      
+            width: 1.3em;
+            height: 1.4em;
+            border: none;
+        }
+
+        .up {
+            background: transparent url(../HTML/Images/sort_up.png);      
+            display: flex;      
+            width: 1.3em;
+            height: 1.4em;
+            cursor: pointer;
+            border: none;
+        }
+
+        </style>
+    </head>
+   <body>
+
+    <a href="#" onclick="showDiv()">
+       <img class="down" />
+    </a>
+
+
+    <div id="divShow" style="display: none;">
+        <div>
+            this is div 1
+        </div>
+        <div>
+            this is div 2
+        </div>
+    </div>
+
+        <script type="text/javascript">    
+
+            function showDiv(){
+                document.getElementById('divShow').style = 'display:block;font-size:x-small'; 
+            }
+            
+        </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+﻿@model DotNetCoreMVC.Models.Person
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Person</h2>
+@using(Html.BeginForm())
+{
+    <div><label>ID:</label>@Html.DisplayFor(m => m.PersonId)</div>
+    <div><label>First Name:</label>@Html.EditorFor(m => m.FirstName)</div>
+    <div><label>Last Name:</label>@Html.EditorFor(m => m.LastName)</div>
+    <div><label>Role:</label>@Html.DisplayFor(m => m.Role)</div>
+
+    <div><label> State : </label> @Html.DropDownListFor(m => m.State,Model.State,"State :",new {  })   </div>
+    <div><label>Country : </label>@Html.DropDownListFor(m => m.Country , Model.Country, "Country :")  </div>
+
+    <button type="submit">Submit</button>
+}
