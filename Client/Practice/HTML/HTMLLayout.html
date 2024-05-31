@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0" >
+<html>
+    <head>
+      <style>
+        .header1 {
+            font-size:4em;
+            color:#009900;
+            font-weight: bold;
+        }
+
+        .header2 {
+            font-size:2em;
+            margin-left:0.7em;
+            margin-bottom: 1em;
+        }
+
+        body {
+            margin: 0 auto;
+            background-position: center;
+            background-size: contain;
+        }
+
+        .menu {
+            position:sticky;
+            top:0;
+            background-color: #009900;
+            padding : 0.7em 0.7em 0.7em 0em;
+            color:white;
+            margin: 0 auto;
+            overflow:hidden;
+        }
+
+        .menu a {
+            color:white;   
+            float:left; 
+            text-align: center;
+            padding: 0.7em 0.7em;
+            text-decoration: none;
+            font-size:1.5em;
+        }
+
+        .menu-log {
+            float:right;
+            right:auto;
+        }
+
+        footer {
+            bottom: 0px;
+            background-color: #000;
+            margin : 1em 1em;
+            color:white;
+            text-align: center;
+            font-size: 1em;
+            font-weight: bold;
+            width: 100%;
+            position:absolute;
+        }
+
+        .container {
+            margin-top:20px;
+            position: relative;
+        }
+
+        .blackbox {
+            position:absolute;
+            border: 2px solid black;
+            background-color: black;
+            color:white;
+            width: 50%;           
+            z-index: 1;
+        }
+
+        .greybox {
+            position:absolute;
+            border:2px solid grey;
+            background-color: grey;
+            color:white;
+            width:10em;
+            left:300px;            
+            z-index: 2;
+        }
+
+        .greenbox {
+           position: absolute;
+           border:2px solid green;
+           background-color: green;
+           color:white;
+           width: 8em;
+           left:170px;
+           z-index: 3; 
+        }
+ 
+        ul.ulmenu {
+            list-style-type:none;
+            background-color: black;
+            margin:0;
+            padding:0;      
+            overflow:hidden;
+        }
+
+       .ulmenu li {
+            float:left;
+        }
+
+        .ulmenu > li > a {     
+            display: inline-block;       
+            color:white;
+            background-color: red;
+            padding:14px 16px;
+            text-decoration: none;
+        }
+
+       
+        .googleitems {
+            display: none;
+            list-style-type :none; 
+            padding:0;  
+            margin:0;    
+        }
+
+        .googleitems a{
+            text-decoration: none;
+            padding:2px;
+            border:1px solid black;
+            background-color: blue;
+            color:white;                            
+        }
+
+        .ulmenu a:hover  {
+            background-color: blue;
+            display: block;
+        }
+
+        span.a{
+            display: block;
+            width:5.5em;
+            height:30px;
+            margin:10px;
+            padding:5px;
+            background-color: yellow;
+        }
+
+        span.b {
+            display: inline;
+            width:5.5em;
+            height:30px;
+            margin:10px;
+            padding:5px;
+            background-color: yellow;
+        }
+
+        span.c {
+            display: inline-block;
+            width:5.5em;
+            height:30px;
+            margin:10px;
+            padding:5px;
+            background-color: yellow;
+        }
+
+      </style>
+    </head>
+    <body>
+
+        <!--Header Section-->
+        <div class="header1">
+            First Header    
+        </div>
+        <div class="header2">
+            Second Header
+        </div>
+        
+        <!--Menu Navigation Section-->
+        <nav class="menu">
+            <a href="#home">Home</a>
+            <a href="#news">News</a>
+            <a href="#Notification">Notification</a>
+            <div class="menu-log">
+                <a href="login">Login</a>
+            </div>
+        </nav>
+
+         <!-- Nav menu without nav -->
+         <ul class="ulmenu">
+            <li>
+                <a href="https://www.google.com" target="_blank">Google</a>
+            </li>
+            <li>
+                <a href="https://www.youtube.com" target="_blank">Youtube</a>
+            </li>
+            <li>
+                <a href="https://www.eenadu.net" target="_blank">Eenadu</a>
+            </li>             
+         </ul>
+
+         <ul class="googleitems">
+            <li>
+                <a href="#">Google Item 1</a>
+            </li>
+            <li>
+                <a href="#">Google Item 1</a>
+            </li>
+            <li>
+                <a href="#">Google Item 1</a>
+            </li>
+         </ul>
+
+         <!--Differences between block , inline and inline-block -->
+         Block  
+         <span class="a">Rajesh</span>      
+         <span class="a">Vemulakonda</span> 
+
+         Inline 
+         <span class="b">Rajesh</span>      
+         <span class="b">Vemulakonda</span> 
+
+         Inline-block
+         <span class="c">Rajesh</span>      
+         <span class="c">Vemulakonda</span> 
+
+
+        <!--Body Section-->
+ 
+        <!--Z Index-->
+        <div class="container">
+            <div class="blackbox">Black Box Z Index 1</div>
+            <div class="greybox">Grey Box Z Index 2</div>
+            <div class="greenbox">Green Box Z Index 3</div>            
+        </div>
+
+        <!--Footer-->
+        <!--as the footer is stationed as absolute it will positioned relative to this div with position -->
+        <!-- <div style="position: fixed;"> -->
+            <!-- <ol start="7">
+                <li> 
+                    V R Pantulu
+                </li>
+                <li> 
+                    V Kasturi       
+                </li>
+                <li> 
+                    Rajesh
+                </li>
+                <li> 
+                    Srividya
+                </li>
+                <li> 
+                    Ashritha
+                </li>
+                <li> 
+                    Ananya
+                </li>            
+            </ol> -->
+            <!-- <div style="top:0px"> -->
+                <footer>
+                    This is footer
+                </footer>
+            <!-- </div> -->
+        <!-- </div> -->
+    </body> 
+</html>
