@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Collections\MyCustomEnumerator.cs" />
     <Compile Include="Concurrency\Tasks.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="Events.cs" />
@@ -52,5 +53,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

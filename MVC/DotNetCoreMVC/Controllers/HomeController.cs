@@ -36,6 +36,7 @@ namespace DotNetCoreMVC.Controllers
         {
             Person dataItem = personData.Where(p => p.PersonId == id).First();
             dataItem.Country = GetCountry();
+            dataItem.State = GetStates("IN");
             return View("Index",dataItem);
         }
 
@@ -62,13 +63,13 @@ namespace DotNetCoreMVC.Controllers
         {
             var lstStates = new List<SelectListItem>();
 
-            if(country == "US")
+            if(country == "IN")
             {
                 lstStates.Add(new SelectListItem("TG", "1"));
                 lstStates.Add(new SelectListItem("AP", "2"));
                 lstStates.Add(new SelectListItem("TN", "3"));
             }
-            else
+            else if (country == "US")
             {
                 lstStates.Add(new SelectListItem("TX", "4"));
                 lstStates.Add(new SelectListItem("AZ", "5"));

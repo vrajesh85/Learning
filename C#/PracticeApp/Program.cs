@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading;
 using PracticeApp.Concurrency;
 using System.Threading.Tasks;
+using PracticeApp.Collections;
+using System.Collections;
 
 namespace PracticeApp
 {
@@ -199,10 +201,10 @@ namespace PracticeApp
 
             #region Tasks
 
-            var task = new Tasks();
-            Task resultTask = task.TaskRun();
-            resultTask.Start();
-            resultTask.Wait();
+            //var task = new Tasks();
+            //Task resultTask = task.TaskRun();
+            //resultTask.Start();
+            //resultTask.Wait();
 
             //TaskStatus isTrue = resultTask.Status;
 
@@ -211,6 +213,76 @@ namespace PracticeApp
 
             //Console.WriteLine($"is task completed {resultTask.IsCompleted} and " +
             //  $"status is {resultTask.Status} at time {DateTime.Now.Ticks}");
+
+            #endregion
+
+            #region Collections
+
+            int[] array1 = new int[] {1,2,3};
+            int[] array2 = new int[] {1,2,3};
+
+            string[] strArray = { "Rajesh", "Vemulakonda", "Rodnay" };
+
+            Console.WriteLine(Array.Find(strArray, n => n.Contains('a')));
+
+            string[] strResult = Array.FindAll(strArray, n => n.Contains('a'));
+            Array.ForEach(strResult, Console.WriteLine);
+            //Console.WriteLine(array1.Equals(array2)); // false
+
+            Console.WriteLine(1 % 2);
+            Console.WriteLine(2 % 1);
+
+            //IStructuralEquatable se1 = array1;
+            //// compares every element of the array 
+            //Console.WriteLine(se1.Equals(array2, StructuralComparisons.StructuralEqualityComparer)); // true
+
+            // Array.ForEach(array1, Console.WriteLine);
+
+
+
+            //MyCustomEnumerator objEnumerator = new MyCustomEnumerator();
+            //objEnumerator.List = new string[]
+            //{
+            //    "V R Pantulu",
+            //    "V Kasturi",
+            //    "Rajesh",
+            //    "Srividya",
+            //    "Ashritha",
+            //    "Ananya"
+            //};
+
+            //while (objEnumerator.MoveNext())
+            //{
+            //    //
+            //}
+            ////objEnumerator.Reset();
+            //objEnumerator.BuildRecursive(objEnumerator.List);
+            //Console.WriteLine(objEnumerator.stringLine);
+
+
+            //MyCollectionEnumerable objEnumerable = new MyCollectionEnumerable();
+            ////var enumerator = objEnumerable.GetEnumerator();
+            ////enumerator.MoveNext();
+            ////int current = (int)enumerator.Current;
+
+            //System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            //sw.Start();
+            //if(objEnumerable.GetEvenNumbersWithYieldReturn(10).Any())
+            //    foreach (var num in objEnumerable.GetEvenNumbersWithYieldReturn(10))
+            //    Console.WriteLine($"value is  {num}");
+            //sw.Stop();
+
+            //var elapsed = sw.Elapsed;
+
+            //Console.WriteLine($"time taken with yield return is {elapsed.Seconds} and {elapsed.Milliseconds}");
+
+            //sw.Start();
+            //objEnumerable.GetEvenNumbersWithoutYieldReturn(10);
+            //sw.Stop();
+
+            //elapsed = sw.Elapsed;
+
+            //Console.WriteLine($"time taken without yield return is {elapsed.Seconds} and {elapsed.Milliseconds}");
 
             #endregion
         }

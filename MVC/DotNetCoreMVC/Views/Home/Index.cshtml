@@ -11,7 +11,7 @@
     <div><label>Last Name:</label>@Html.EditorFor(m => m.LastName)</div>
     <div><label>Role:</label>@Html.DisplayFor(m => m.Role)</div>
 
-    <div><label> State : </label> @Html.DropDownListFor(m => m.State,Model.State,"State :",new {  })   </div>
+    <div><label> State : </label> @Html.DropDownListFor(m => m.State, Model.State,"State :",new {  })   </div>
     <div><label>Country : </label>@Html.DropDownListFor(m => m.Country , Model.Country, "Country :")  </div>
 
     <button type="submit">Submit</button>
