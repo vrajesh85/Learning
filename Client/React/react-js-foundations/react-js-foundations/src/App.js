@@ -6,6 +6,8 @@ import Counter from './Components/Class/Counter';
 import TodoComponent from './Components/Class/TodoClass';
 import CounterFunc  from './Components/Functions/CounterFunc';
 import Countries from './Components/Functions/Countries';
+import UnmountExample from './Components/Class/UnmountExample';
+import UnmountExampleFunc from './Components/Functions/UnmountExampleFunc'
 
 function App() {
   const [personName , setPersonName] = React.useState('');
@@ -49,6 +51,9 @@ function App() {
           </li>
         </ul>
       </Countries>
+
+    <UnmountExample></UnmountExample>
+    <UnmountExampleFunc></UnmountExampleFunc>
 
     </div>
   );
