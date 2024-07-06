@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.24.7",
+    "inquirer": "^9.1.4",
+    "nodeman": "^1.1.2",
+    "typescript": "^5.5.2"
+  },
+  "build": "tsc -p tsconfig.json",
+  "devDependencies": {
+    "@types/node": "^20.14.9"
+  }
+}
