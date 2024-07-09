@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace DotNetCoreMVC.Controllers
 {
+   // [ValidateAntiForgeryToken]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -41,6 +42,7 @@ namespace DotNetCoreMVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Index(Person values)
         {
             return RedirectToAction("Index");

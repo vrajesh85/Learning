@@ -1,0 +1,35 @@
+﻿@model DotNetCoreMVC.Models.Person
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Post Back Controller</h2>
+
+@functions{
+    public string GetTokens() {
+        string cookieToken, formToken;
+        IAntiforgery _antiforgery;
+        var tokens = _antiforgery.GetAndStoreTokens(HttpContext);
+        return cookieToken + ":" + formToken;
+    }
+}
+
+    
+
+    <button type="submit" id="btn" onclick="Submit_Click">Submit</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $('#btn').on('click', Submit_Click);
+    });
+
+    function Submit_Click() {
+        alert('reached here');
+        $.ajax({
+            url: './PostBack/PostRequest',
+            type: "POST"
+        });
+        }
+</script>

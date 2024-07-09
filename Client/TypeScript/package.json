@@ -5,8 +5,12 @@
     "nodeman": "^1.1.2",
     "typescript": "^5.5.2"
   },
+  "type":"commonjs",
   "build": "tsc -p tsconfig.json",
   "devDependencies": {
-    "@types/node": "^20.14.9"
+    "@types/node": "^20.14.10"
+  },
+  "scripts": {
+    "build": "npx tsc index.ts"
   }
 }
