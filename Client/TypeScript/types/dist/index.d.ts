@@ -67,3 +67,15 @@ declare class Leopard extends Animal {
     getDetails(): string;
 }
 declare let animalData: Animal[];
+type ageType = {
+    age: number;
+};
+declare class MiddleAge<T> {
+    private items;
+    constructor(initialItems?: T[]);
+    addItems(...newItems: T[]): void;
+    getItems(name: T): T;
+    getCount(): number;
+}
+declare let shape: ageType;
+declare let normalPerson: MiddleAge<Person>;

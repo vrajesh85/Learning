@@ -116,8 +116,33 @@ class Leopard extends Animal {
     }
 }
 
-let animalData : Animal[] = [ new Tiger("TIGER",true,false) , new Leopard("LEOPARD",true,true,true)];
+let animalData : Animal[] = [ new Tiger("TIGER", true, false) , new Leopard("LEOPARD", true, true, true)];
 
 animalData.forEach(item => {
    console.log(item.getSpecificDetails());
 });
+
+type ageType = { age : number };
+
+class MiddleAge<T>{
+    private items : Set<T>;
+    constructor(initialItems : T[] = []){
+        this.items = new Set<T>(initialItems);
+    }
+
+    addItems(...newItems : T[]){
+        newItems.forEach(item => this.items.add(item));
+    }
+
+    getItems(name : T) : T{
+        return[...this.items.values()].find(item => item);
+    }
+
+    getCount() : number {
+        return[...this.items.values()].length;
+    }
+}
+
+let shape : ageType = { age : 39};
+let normalPerson : MiddleAge<Person> = new MiddleAge<Person>(data);
+normalPerson.addItems(new Employee("3","Raj","VSKP","IT"));

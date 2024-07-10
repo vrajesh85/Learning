@@ -145,3 +145,21 @@ let animalData = [new Tiger("TIGER", true, false), new Leopard("LEOPARD", true, 
 animalData.forEach(item => {
     console.log(item.getSpecificDetails());
 });
+class MiddleAge {
+    items;
+    constructor(initialItems = []) {
+        this.items = new Set(initialItems);
+    }
+    addItems(...newItems) {
+        newItems.forEach(item => this.items.add(item));
+    }
+    getItems(name) {
+        return [...this.items.values()].find(item => item);
+    }
+    getCount() {
+        return [...this.items.values()].length;
+    }
+}
+let shape = { age: 39 };
+let normalPerson = new MiddleAge(data);
+normalPerson.addItems(new Employee("3", "Raj", "VSKP", "IT"));
