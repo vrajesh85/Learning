@@ -8,18 +8,29 @@ import { TodoList } from './TodoList';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-   private list = new TodoList("Rajesh",[
-    new TodoItem("Study Angular",false),
-    new TodoItem("Study React",false),
-    new TodoItem("Study C#",true),
-    new TodoItem("Study Dotnet",true)
-   ]);
+  private list = new TodoList("Rajesh", [
+    new TodoItem("Study Angular", false),
+    new TodoItem("Study React", false),
+    new TodoItem("Study C#", true),
+    new TodoItem("Study Dotnet", true)
+  ]);
 
-   get userName() : string {
+  get userName(): string {
     return this.list.user;
-   }
+  }
 
-   get itemCount() : number {
-     return this.list.items.filter(item => item.isComplete).length;
-   }
+  get itemCount(): number {
+    return this.list.items.filter(item => !item.isComplete).length;
+  }
+
+  get items(): readonly TodoItem[] {
+    return this.list.items.filter(item => this.showComplete || !item.isComplete);
+  }
+
+  addItem(text: string) {
+    if (text != "")
+      this.list.addItem(text);
+  }
+
+  showComplete: boolean = false;
 }
