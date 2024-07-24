@@ -15,6 +15,8 @@ export class AppComponent {
     new TodoItem("Study Dotnet", true)
   ]);
 
+  showComplete: boolean = false;
+
   get userName(): string {
     return this.list.user;
   }
@@ -32,5 +34,5 @@ export class AppComponent {
       this.list.addItem(text);
   }
 
-  showComplete: boolean = false;
+
 }

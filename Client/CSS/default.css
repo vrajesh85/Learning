@@ -1,0 +1,70 @@
+div p {
+    border: 2px solid red;
+}
+
+a {
+    display: none;
+    margin-top: 2px;
+    border: 2px solid red;
+}
+
+div:hover a {
+    display: inline;
+    font-size: 20px;
+}
+
+div~p {
+    border: 2px solid green;
+}
+
+div+p {
+    border: 2px solid blue;
+}
+
+div:hover input {
+    background-color: aqua;
+}
+
+div input:out-of-range {
+    border: 5px solid red;
+}
+
+p i:first-child:hover {
+    font-size: 30px;
+}
+
+/* unvisited link */
+a:link {
+    color: #ff0000;
+    text-decoration: none;
+}
+
+/* visited link */
+a:visited {
+    color: #ffff00;
+}
+
+/* hover link */
+a:hover {
+    color: #0000ff;
+}
+
+/* selected link */
+a:active {
+    color: #ff05ff;
+}
+
+::selection {
+    color: red;
+    background-color: yellow;
+}
+
+/* if title contains the word 'video'  */
+a[title~='video']:hover {
+    font-size: 50px;
+}
+
+div.borders p {
+    border-style: dotted solid;
+    border-color: rgb(255, 0, 0) yellow green blue;
+}

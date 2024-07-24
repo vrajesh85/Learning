@@ -46,6 +46,7 @@
     <Compile Include="Collections\MyCustomEnumerator.cs" />
     <Compile Include="Concurrency\Tasks.cs" />
     <Compile Include="Delegates.cs" />
+    <Compile Include="Design Patterns\Observable.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

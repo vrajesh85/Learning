@@ -1,0 +1,33 @@
+<h1>Rx JS Tutorial</h1>
+
+<div *ngIf="agentName">
+  {{ agentName }}
+</div>
+<div>
+  <h2>Of Operator</h2>
+  <p>=================================</p>
+  <div>
+    This is from "of" operator
+    {{ ofOperatorValue }}
+  </div>
+  <div>
+    {{ address}}
+  </div>
+  <p>=================================</p>
+</div>
+<div>
+  <span>==============================</span>
+  <h2>from Operator</h2>
+  <div>
+    order purchase is {{ order }}
+  </div>
+</div>
+<div>
+  <span>=============================</span>
+  <h2>from event operator</h2>
+  <div>
+    <button #validate (click)="clickObservableEvent()">
+      Click Me
+    </button>
+  </div>
+</div>

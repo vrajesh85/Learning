@@ -9,6 +9,7 @@ using PracticeApp.Concurrency;
 using System.Threading.Tasks;
 using PracticeApp.Collections;
 using System.Collections;
+using PracticeApp.Design_Patterns;
 
 namespace PracticeApp
 {
@@ -283,6 +284,21 @@ namespace PracticeApp
             //elapsed = sw.Elapsed;
 
             //Console.WriteLine($"time taken without yield return is {elapsed.Seconds} and {elapsed.Milliseconds}");
+
+            #endregion
+
+            #region Design Patterns
+
+            var objSender = new Subject();
+            var objObserver1 = new Observer();
+            var objObserver2 = new Observer();
+            var objObserver3 = new Observer();
+
+            objSender.Subscribe(objObserver1);
+            objSender.Subscribe(objObserver2);
+            objSender.Subscribe(objObserver3);
+
+            objSender.NotifyObservers();
 
             #endregion
         }
