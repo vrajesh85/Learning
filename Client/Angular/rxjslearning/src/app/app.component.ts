@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Observable, of, from, fromEvent } from 'rxjs';
+import { Observable, of, from, fromEvent, interval, take } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +21,7 @@ export class AppComponent {
   houseAddress$: Observable<any>;
   agents$: Observable<string>;
   orders$: Observable<string> = from(['Kitchen', 'Electronics', 'HouseHold']);
-
+  newOrders$ = this.orders$;
   @ViewChild('validate')
   validate: ElementRef | undefined;
 
@@ -51,14 +51,31 @@ export class AppComponent {
         this.order = data;
       }, 3000);
     });
+
+    // interval operator
+    this.newOrders$.subscribe((data => {
+      const interval$ = interval(1000);
+      // pipe operator
+      const seqNum$ = interval$.pipe(take(7));
+      seqNum$.subscribe((num => {
+        console.log(`order is ${data} with sequence ${num}`);
+      }))
+
+    }));
+
   }
 
+  // from event
   clickObservableEvent() {
     const btnObservable$ = fromEvent(this.validate?.nativeElement, 'click');
     let count: number = 1;
     btnObservable$.subscribe(data => {
+      console.log(data);
       console.log(`you clicked the button ${count} times`);
       ++count;
     });
   }
+
+
+
 }
