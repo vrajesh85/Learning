@@ -5,6 +5,8 @@ import ParentFunction from './Components/Function/ParentFunction';
 import './App.css';
 import { useState } from 'react';
 import PropsMutator from './Components/Function/PropsMutator';
+import NewsFeed from './Components/Function/NewsFeedFunction';
+import MultipleCounters from './Components/Class/MultipleCounters';
 
 function App() {
 
@@ -22,6 +24,10 @@ function App() {
       <ParentFunction></ParentFunction>
       <p>This is coming from Props Mutator</p>
       <PropsMutator theNumber={theNumber} setTheNumber={setTheNumber} />
+      <p>This is coming from news feed function component</p>
+      <NewsFeed></NewsFeed>
+      <p>This is from multiple counters class</p>
+      <MultipleCounters></MultipleCounters>
     </div>
   );
 }
