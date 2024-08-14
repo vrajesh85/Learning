@@ -92,9 +92,40 @@ namespace PracticeApp
             #region Events
 
             //Stock objStock = new Stock();
-            //objStock.Price = 10;
-            //objStock.PriceChanged += stock_PriceChanged;
-            //objStock.Price = 20;
+            //SubscriberAngleOne angelOne = new SubscriberAngleOne();
+            //SubscriberZerodha zerodha = new SubscriberZerodha();
+            //objStock.PriceChangedHandler += zerodha.OnStockPriceChanged1;
+            //objStock.PriceChangedHandler += angelOne.OnStockPriceChanged2;
+            //objStock.Price = 100;
+            //objStock.Price = 200;
+
+            //Bar((int x) => Foo(x));
+
+            #endregion
+
+            #region LamdaExpressions
+
+            //Console.WriteLine("The value is " + Natural().Invoke());
+            //Console.WriteLine("The value is " + Natural().Invoke());
+            //Console.WriteLine("The value is " + Natural().Invoke());
+
+            Action[] actions = new Action[3];
+            for(int i = 0; i < 3; i++)
+            {
+                actions[i] = () => Console.WriteLine($"value is {i}"); // 3 3 3
+            }
+
+            foreach(Action action in actions)
+                action();
+
+            for(int i = 0; i < 3; i++)
+            {
+                int localVariable = i;
+                actions[i] = () => Console.WriteLine($"value is {localVariable}"); // 0 1 2 
+            }
+            
+            foreach (Action action in actions)
+               action();
 
             #endregion
 
@@ -219,19 +250,19 @@ namespace PracticeApp
 
             #region Collections
 
-            int[] array1 = new int[] {1,2,3};
-            int[] array2 = new int[] {1,2,3};
+            //int[] array1 = new int[] {1,2,3};
+            //int[] array2 = new int[] {1,2,3};
 
-            string[] strArray = { "Rajesh", "Vemulakonda", "Rodnay" };
+            //string[] strArray = { "Rajesh", "Vemulakonda", "Rodnay" };
 
-            Console.WriteLine(Array.Find(strArray, n => n.Contains('a')));
+            //Console.WriteLine(Array.Find(strArray, n => n.Contains('a')));
 
-            string[] strResult = Array.FindAll(strArray, n => n.Contains('a'));
-            Array.ForEach(strResult, Console.WriteLine);
-            //Console.WriteLine(array1.Equals(array2)); // false
+            //string[] strResult = Array.FindAll(strArray, n => n.Contains('a'));
+            //Array.ForEach(strResult, Console.WriteLine);
+            ////Console.WriteLine(array1.Equals(array2)); // false
 
-            Console.WriteLine(1 % 2);
-            Console.WriteLine(2 % 1);
+            //Console.WriteLine(1 % 2);
+            //Console.WriteLine(2 % 1);
 
             //IStructuralEquatable se1 = array1;
             //// compares every element of the array 
@@ -289,24 +320,18 @@ namespace PracticeApp
 
             #region Design Patterns
 
-            var objSender = new Subject();
-            var objObserver1 = new Observer();
-            var objObserver2 = new Observer();
-            var objObserver3 = new Observer();
+            //var objSender = new Subject();
+            //var objObserver1 = new Observer();
+            //var objObserver2 = new Observer();
+            //var objObserver3 = new Observer();
 
-            objSender.Subscribe(objObserver1);
-            objSender.Subscribe(objObserver2);
-            objSender.Subscribe(objObserver3);
+            //objSender.Subscribe(objObserver1);
+            //objSender.Subscribe(objObserver2);
+            //objSender.Subscribe(objObserver3);
 
-            objSender.NotifyObservers();
+            //objSender.NotifyObservers();
 
             #endregion
-        }
-
-        static void stock_PriceChanged(object sender, PriceChangedEventArgs e)
-        {
-            if (e.newPrice != e.oldPrice)
-                Console.WriteLine("Event Fired --> price has changed");
         }
 
         static void WriteY(int limit,bool isDone)
@@ -409,6 +434,38 @@ namespace PracticeApp
             }
         }
         static string ThrowNull() => "";// throw null; // throws null reference exception 
+
+        static void Foo<T>(T x) { Console.WriteLine($"entered type is {x.GetType()}"); }
+        static void Bar<T>(Action<T> x) { }
+
+        static Func<int> Natural()
+        {
+            return () =>
+            {
+                int seed = 0;
+                return ++seed;
+            };
+        }
+
+        public class SubscriberZerodha
+        {            
+            public void OnStockPriceChanged1(object sender, PriceChangedEventArgs e)
+            {
+                if (e.OldPrice != e.NewPrice)
+                    Console.WriteLine($"Price changed event from Zerodha");
+            }
+        }
+
+        public class SubscriberAngleOne
+        {
+            public void OnStockPriceChanged2(object sender, PriceChangedEventArgs e)
+            {
+                if (e.OldPrice != e.NewPrice)
+                    Console.WriteLine($"Price changed event from AngelOne");
+            }
+        }
+
+        
     }
 
 }

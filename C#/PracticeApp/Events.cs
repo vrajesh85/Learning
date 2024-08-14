@@ -6,37 +6,33 @@ using System.Threading.Tasks;
 
 namespace PracticeApp
 {
-    public class Stock
+    public class PriceChangedEventArgs : EventArgs
     {
-        decimal _price;
-        public event EventHandler<PriceChangedEventArgs> PriceChanged;
-
-        protected void OnPriceChanged(PriceChangedEventArgs e)
+       public decimal OldPrice;
+       public decimal NewPrice;
+        public PriceChangedEventArgs(decimal oldPrice , decimal newPrice)
         {
-            PriceChanged?.Invoke(this, e);
-        }
-        public decimal Price
-        {
-            get => _price;
-            set
-            {
-                decimal oldValue = _price;
-                _price = value;
-                OnPriceChanged(new PriceChangedEventArgs(oldValue, _price));
-            }
+            this.OldPrice = oldPrice;
+            this.NewPrice = newPrice;
         }
     }
 
-
-    public class PriceChangedEventArgs : EventArgs
+    public class Stock
     {
-        public readonly decimal oldPrice;
-        public readonly decimal newPrice;
-
-        public PriceChangedEventArgs(decimal oldPrice, decimal newPrice)
+        private decimal _price;
+        public event EventHandler<PriceChangedEventArgs> PriceChangedHandler;
+        protected void OnPriceChanged(PriceChangedEventArgs e)
         {
-            this.oldPrice = oldPrice;
-            this.newPrice = newPrice;
+            PriceChangedHandler?.Invoke(this, e);
+        }
+        public decimal Price 
+        { 
+            get {  return _price; }
+            set 
+            {
+                decimal oldPrice = _price;
+                OnPriceChanged(new PriceChangedEventArgs(oldPrice, value));
+            }
         }
     }
 }
