@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using PracticeApp.Collections;
 using System.Collections;
 using PracticeApp.Design_Patterns;
+using System.Data.Common;
 
 namespace PracticeApp
 {
@@ -109,23 +110,26 @@ namespace PracticeApp
             //Console.WriteLine("The value is " + Natural().Invoke());
             //Console.WriteLine("The value is " + Natural().Invoke());
 
-            Action[] actions = new Action[3];
-            for(int i = 0; i < 3; i++)
-            {
-                actions[i] = () => Console.WriteLine($"value is {i}"); // 3 3 3
-            }
+            //Action[] actions = new Action[3];
+            //for(int i = 0; i < 3; i++)
+            //{
+            //    actions[i] = () => Console.WriteLine($"value is {i}"); // 3 3 3
+            //}
 
-            foreach(Action action in actions)
-                action();
+            //foreach(Action action in actions)
+            //    action();
 
-            for(int i = 0; i < 3; i++)
-            {
-                int localVariable = i;
-                actions[i] = () => Console.WriteLine($"value is {localVariable}"); // 0 1 2 
-            }
+            //for(int i = 0; i < 3; i++)
+            //{
+            //    int localVariable = i;
+            //    actions[i] = () => Console.WriteLine($"value is {localVariable}"); // 0 1 2 
+            //}
             
-            foreach (Action action in actions)
-               action();
+            //foreach (Action action in actions)
+            //   action();
+
+            foreach(var element in GetFibnocciNumbers(10))
+                Console.Write(element + " ");
 
             #endregion
 
@@ -447,6 +451,19 @@ namespace PracticeApp
             };
         }
 
+        static IEnumerable<int> GetFibnocciNumbers(int count)
+        {
+            for(int i = 0, prevFib = 1, currentFib = 1; i < count; i++)
+            {
+                yield return prevFib;
+                int result = prevFib + currentFib;
+                prevFib = currentFib;
+                currentFib = result;       
+                if (i > 5)
+                    yield break;
+            }
+        }
+
         public class SubscriberZerodha
         {            
             public void OnStockPriceChanged1(object sender, PriceChangedEventArgs e)
@@ -464,6 +481,8 @@ namespace PracticeApp
                     Console.WriteLine($"Price changed event from AngelOne");
             }
         }
+
+        
 
         
     }
