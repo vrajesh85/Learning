@@ -18,21 +18,15 @@ class MultipleCounters extends Component {
     incrementButton1 = () => {
         // this.setState({
         //     count1 : this.state.count1 + 1
-        // })
+        // });
         
-        this.setState((current) => {
-           return { count1 : current.count1 + 1 };
-        });
+        this.setState((current) => { return { count1 : current.count1 + 1 }; });
 
         this.testCount++;
 
         console.log(`the value of test count is ${this.testCount}`);
         console.log(`the value of count1 is ${this.state.count1}`);
-    }   
-
-    updater(){
-       return () => {  return this.state.count1 + 1; }
-    }
+    }     
 
     incrementButton2 = () => {
         this.setState({
@@ -40,10 +34,25 @@ class MultipleCounters extends Component {
         })
     }
 
+    incrementTwice =() => {
+
+    this.setState((current)=>{ return { count1: current.count1 + 1 }; });
+        
+    this.testCount++;
+        
+    // this.setState((current)=>{ return { count1: current.count1 + 1 }; });
+        
+    // this.testCount++;
+        
+    console.log("Count should be: " + this.testCount);
+    
+    console.log("Count1 should be: " + this.state.count1);    
+    }
+
     render(){
         return(
             <>
-            <button onClick={this.incrementButton1}>Button 1 {this.state.count1}</button>
+            <button onClick={this.incrementTwice}>Button 1 {this.state.count1}</button>
             <br />
             <button onClick={this.incrementButton2}>Button 2 {this.state.count2}</button>
             </>

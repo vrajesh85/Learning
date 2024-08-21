@@ -7,6 +7,7 @@ import { useState } from 'react';
 import PropsMutator from './Components/Function/PropsMutator';
 import NewsFeed from './Components/Function/NewsFeedFunction';
 import MultipleCounters from './Components/Class/MultipleCounters';
+import MultipleCountersFunc from './Components/Function/MultipleCountersFunc';
 
 function App() {
 
@@ -28,6 +29,8 @@ function App() {
       <NewsFeed></NewsFeed>
       <p>This is from multiple counters class</p>
       <MultipleCounters></MultipleCounters>
+      <p>This is from multiple counters function</p>
+      <MultipleCountersFunc></MultipleCountersFunc>
     </div>
   );
 }
