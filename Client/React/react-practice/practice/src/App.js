@@ -8,6 +8,7 @@ import PropsMutator from './Components/Function/PropsMutator';
 import NewsFeed from './Components/Function/NewsFeedFunction';
 import MultipleCounters from './Components/Class/MultipleCounters';
 import MultipleCountersFunc from './Components/Function/MultipleCountersFunc';
+import RefExampleParent from './Components/Class/RefExampleParent';
 
 function App() {
 
@@ -31,6 +32,8 @@ function App() {
       <MultipleCounters></MultipleCounters>
       <p>This is from multiple counters function</p>
       <MultipleCountersFunc></MultipleCountersFunc>
+      <p>This is RefExample from class</p>
+      <RefExampleParent />
     </div>
   );
 }
