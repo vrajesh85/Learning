@@ -1,0 +1,61 @@
+<ng-template [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{temp : 'Header'}">
+
+</ng-template>
+<div class="text-white">
+    <div class="bg-info p-2">
+    There are total of {{ getProductCount() }} products in model
+</div>
+</div>
+<div>
+    <p>This is *ngIf example</p>
+    <div *ngIf="getProductCount() > 1" class="text-white">
+        <div class="bg-info p-2">
+            This will be displayed if *ngIf holds true
+        </div>
+    </div>
+    <p>This is *ngSwitch example</p>
+    <div class="bg-info p-2 mt-1" [ngSwitch]="getProductByPosition(1)?.name">
+        <span *ngSwitchCase="'as'">This is zero</span>
+        <span *ngSwitchCase="'TV'">There are TV products</span>
+        <span *ngSwitchDefault>There are products in the model</span>
+    </div>
+    <p>This is *ngFor example</p>
+    <table class="table table-sm table-bordered text-dark">
+        <tr>
+            <th>S.No</th>
+            <th> Name </th>
+            <th> Category </th>
+            <th> Price </th>
+        </tr>
+        <tr *ngFor="let item of getProducts(); let i = index; let c = count; trackBy : getKey;
+        let odd = odd; let last=last;" [class.bg-primary]="odd" 
+        [class.bg-warning]="last" [class.bg-info]="isProductSelected(item)">
+            <td>
+                {{ i + 1 }} of {{ c }}
+            </td>
+            <td (mouseover)="selectedProduct=item.name">
+                {{ item.name }}
+            </td>
+            <td>
+                {{ item.category }}
+            </td>
+            <td>
+                {{ item.price }}
+            </td>
+        </tr>
+    </table>
+    
+    <ng-template #titleTemplate let-text="temp">
+        <h4 class="p-2 bg-success text-white">{{text}}</h4>
+    </ng-template>
+    <p>This is ng template example usage</p>
+    <ng-template [ngTemplateOutlet]="titleTemplate" [ngTemplateOutletContext]="{temp : 'Footer'}">
+
+    </ng-template>
+    <p> This is event binding </p>
+    <div>
+        <span>
+            Selected Product : {{ selectedProduct ?? 'None' }}
+        </span>
+    </div>
+</div>

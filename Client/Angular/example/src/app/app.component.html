@@ -1,3 +1,31 @@
-<div class="bg-primary text-white text-center">
-  <h1>Hello World</h1>
+<div class="text-white">
+  <p>This is standard property binding</p>
+  <div [class]="getClasses(1)">   
+    The first product is {{ model.getProductById(1)?.name }}
+  </div>
+  <div [class]="getClasses(2)">
+      The second product is {{ model.getProductById(2)?.name }}
+  </div>
+     [textContent]="'Name : ' + (model.getProductById(1)?.name ?? 'None')">
+    There are {{ model.getProducts().length }} products in the model
+</div>
+<p>This is special class binding</p>
+<div class="p-2" [class.bg-success]="(model.getProductById(1)?.price ?? 0) < 40000" 
+                 [class.bg-info]="(model.getProductById(1)?.price ?? 0) < 40000">
+                 The second product is {{ model.getProductById(2)?.name }}
+</div>
+<p>This is class map object</p>
+<div [ngClass]="getClassMap(1)">
+    The product is {{ model.getProductById(1)?.name }}
+</div>
+<div [ngClass]="getClassMap(2)">
+  The product is {{ model.getProductById(2)?.name }}
+</div>
+<p>This is product by position map object</p>
+<div [ngClass]="getProductByPosition(0)">
+  This is the product by position {{ model.getProductById(1)?.name }}
+</div>
+<div class="form-group m-2">
+  <label>Name:</label>
+  <input class="form-control" [value]="model.getProductById(1)?.name ?? 'None'" />
 </div>
