@@ -4,6 +4,8 @@ const CounterFunc = () => {
 
     const [count, setCount] = useState(0);
 
+    console.log(`CounterFunc is called`);
+
     const handleClick = (e) => {
         console.dir(e);
         setCount(count + 1);

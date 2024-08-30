@@ -6,11 +6,11 @@ class CounterClass extends Component {
         this.state = {
             count: 0
         };
-
+        console.log('from counter class');
         this.incrementCount = this.incrementCount.bind(this);
     }
 
-    incrementCount() {
+    incrementCount() {        
         this.setState({
             count: this.state.count + 1
         })

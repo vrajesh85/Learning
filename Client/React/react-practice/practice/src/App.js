@@ -9,6 +9,11 @@ import NewsFeed from './Components/Function/NewsFeedFunction';
 import MultipleCounters from './Components/Class/MultipleCounters';
 import MultipleCountersFunc from './Components/Function/MultipleCountersFunc';
 import RefExampleParent from './Components/Class/RefExampleParent';
+import NumberGuessing from './Components/Function/NumberGuessing';
+import ButtonContainer from './Components/Function/ButtonContainer';
+import RenderCounter from './Components/Function/RenderCounter';
+import TimerFunc from './Components/Function/TimerFunc';
+import ReducerCounter from './Components/Function/ReducerCounter';
 
 function App() {
 
@@ -34,6 +39,16 @@ function App() {
       <MultipleCountersFunc></MultipleCountersFunc>
       <p>This is RefExample from class</p>
       <RefExampleParent />
+      <p>This is NumberGuessing from function</p>
+      <NumberGuessing></NumberGuessing>  
+      <p>This is button container</p> 
+      <ButtonContainer />
+      <h3>Render Counter Func</h3>
+      <RenderCounter />
+      <h3>Timer Func</h3>
+      {/* <TimerFunc /> */}
+      <h3>ReducerCounter</h3>
+      <ReducerCounter />
     </div>
   );
 }
