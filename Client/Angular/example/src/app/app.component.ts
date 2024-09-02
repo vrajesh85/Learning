@@ -1,6 +1,7 @@
 import { ApplicationRef , Component } from '@angular/core';
 import { Model } from '../app/shared/models/ProductRepository.model';
 import { Product } from './shared/models/Product';
+import { NgModel, ValidationErrors } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -11,6 +12,8 @@ export class AppComponent {
   title = 'example';
   model : Model = new Model();  
   selectedProduct : string | undefined;
+  newProduct : Product = new Product();
+
 
   constructor(ref : ApplicationRef){
     (<any>window).appRef = ref;
@@ -50,4 +53,23 @@ export class AppComponent {
   getKey(index : number , product : Product){
     return product.id;
   }
+
+  assignSelectedProduct(assignedValue : string | undefined){
+    this.selectedProduct = assignedValue;
+  }
+
+  handleInputEvent(ev : Event){
+    if (ev.target instanceof HTMLInputElement){
+        this.selectedProduct = ev.target.value;
+    }
+  }
+
+  get jsonProduct(){
+    return JSON.stringify(this.newProduct);
+  }
+
+  addProduct(product : Product){
+    console.log(`New Product : ${this.jsonProduct}`);
+  }
+   
 }

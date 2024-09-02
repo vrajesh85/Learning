@@ -33,13 +33,37 @@
             <td>
                 {{ i + 1 }} of {{ c }}
             </td>
-            <td (mouseover)="selectedProduct=item.name">
+            <td (mouseover)="selectedProduct = item.name">
                 {{ item.name }}
             </td>
-            <td>
+            <td pa-attr pa-attr-class="table-warning">
                 {{ item.category }}
             </td>
+            <td pa-attr pa-attr-class="table-info">
+                {{ item.price }}
+            </td>
+        </tr>
+    </table>
+
+    <p>This is for directives example</p>
+    <table class="table table-sm table-bordered text-dark">
+        <tr>
+            <th>S.No</th>
+            <th> Name </th>
+            <th> Category </th>
+            <th> Price </th>
+        </tr>
+        <tr *ngFor="let item of getProducts(); let i = index; let c = count">
             <td>
+                {{ i + 1 }} of {{ c }}
+            </td>
+            <td (mouseover)="selectedProduct = item.name">
+                {{ item.name }}
+            </td>
+            <td [pa-attr-input]="item.category == 'Gadget' ? 'text-danger' : null">
+                {{ item.category }}
+            </td>
+            <td [pa-attr-input]="'table-info'">
                 {{ item.price }}
             </td>
         </tr>
@@ -58,4 +82,41 @@
             Selected Product : {{ selectedProduct ?? 'None' }}
         </span>
     </div>
+</div>
+<div class="form-group">
+    <label>Product Name</label>
+    <input class="form-control" placeholder="Type something..."
+     (input)="selectedProduct = $any($event).target.value" [value]="selectedProduct ?? ''" />
+    <h4>Handle Event in a component</h4>
+    <input class="form-control" placeholder="Type Someting..." (input)="handleInputEvent($event)" />
+</div>
+<div class="form-group">
+    <h3>Template Reference Variable</h3>
+    <input class="form-control" #product placeholder="type something..." (input)="false" />
+    Selected Product : {{ product.value }}
+</div>
+<h3>Ng Model example</h3>
+<div class="p-2">
+    <div class="bg-info text-white mb-2 p-2">Model Data: {{jsonProduct}}</div>
+    <form (ngSubmit)="addProduct(newProduct)">
+        <div class="form-group">
+            <label>Name</label>
+            <input class="form-control" [(ngModel)]="newProduct.name" 
+                required minLength="5" pattern="^[A-Za-z ]+$" [ngModelOptions]="{standalone: true}" />
+        </div>
+        <button class="btn btn-primary mt-2" type="submit">
+             Create
+        </button>
+    </form>   
+    <!-- <div class="form-group">
+        <label>Category</label>
+        <input class="form-control" [(ngModel)]="newProduct.category" />
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input class="form-control" [(ngModel)]="newProduct.price" />
+    </div>
+        <button class="btn btn-primary mt-2" (click)="addProduct(newProduct)">
+            Create
+        </button> -->
 </div>
