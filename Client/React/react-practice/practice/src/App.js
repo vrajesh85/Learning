@@ -14,6 +14,10 @@ import ButtonContainer from './Components/Function/ButtonContainer';
 import RenderCounter from './Components/Function/RenderCounter';
 import TimerFunc from './Components/Function/TimerFunc';
 import ReducerCounter from './Components/Function/ReducerCounter';
+import CallMe from './Components/Function/UnnecessaryRenders';
+import NewsToday from './Components/Class/NewsToday';
+import NewsTodayFunc from './Components/Function/NewsTodayFunc';
+import RestResponse from './Components/Function/RestResponse';
 
 function App() {
 
@@ -49,6 +53,14 @@ function App() {
       {/* <TimerFunc /> */}
       <h3>ReducerCounter</h3>
       <ReducerCounter />
+      <h3> Call me Function</h3>
+      <CallMe />
+      <h3> News Today </h3>
+      <NewsToday />
+      <h3>News today func</h3>
+      <NewsTodayFunc />
+      <h3>Rest Response</h3>
+      <RestResponse />
     </div>
   );
 }
