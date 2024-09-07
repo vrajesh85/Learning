@@ -99,7 +99,40 @@
                 <button  type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong> Records Saved Successfully !</strong>
             </div>
-        </div>    
+        </div>   
+        <h3> Accordion </h3> 
+        <div id="accordion" class="accordion">
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapseOne">Link 1</a>
+                    <div id="collapseOne" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            Div 1
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapseTwo">Link 2</a>
+                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                        Div 2
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapseThree">Link 3</a>
+                    <div id="collapseThree" class="collapse" data-parent="#accordion">
+                     <div class="card-body">
+                        Div 3
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <script src="./node_modules/jquery/dist/jquery.slim.js"></script>
         <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="./node_modules/jquery/dist/jquery.min.js"></script> 
