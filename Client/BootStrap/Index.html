@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Boot Strap Practice</title>
+       <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+       <link rel="stylesheet" href="./CSS/general.css">
+    </head>
+    <body text-align="center">
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" type="button">Click Me
+            <span class="caret"></span>
+        </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="#">Menu 1</a>
+                </li>
+                <li>
+                    <a href="#">Menu 2</a>
+                </li>
+                <li>
+                    <a href="#">Menu 3</a>
+                </li>
+            </ul>
+        </div>
+        <div class="input-group">
+            <input id="email" type="email" class="form-control" name="email" placeholder="Email">
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-user"></i>
+            </span>
+            
+        </div>
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Age
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-warning">
+                        <td>    
+                            V R Pantulu
+                        </td>
+                        <td>
+                            74
+                        </td>
+                    </tr>
+                    <tr class="table-info">
+                        <td>    
+                            V Kasturi
+                        </td>
+                        <td>
+                            73
+                        </td>
+                    </tr>
+                <tr class="table-danger">
+                    <td>
+                        Rajesh  Vemulakonda 
+                    </td>
+                    <td>
+                        39
+                    </td>            
+                </tr>
+                <tr class="table-active">
+                    <td>    
+                        Srividya
+                    </td>
+                    <td>
+                        33
+                    </td>
+                </tr>
+                <tr>
+                    <td>    
+                        Ashritha
+                    </td>
+                    <td>
+                        9
+                    </td>
+                </tr>
+                <tr class="table-success">
+                    <td>    
+                        Ananya
+                    </td>
+                    <td>
+                        1
+                    </td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+        <div class="container absolutediv">
+            <div class="alert alert-success alert-dismissible fade show">
+                <button  type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong> Records Saved Successfully !</strong>
+            </div>
+        </div>    
+        <script src="./node_modules/jquery/dist/jquery.slim.js"></script>
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./node_modules/jquery/dist/jquery.min.js"></script> 
+    </body>
+</html>
