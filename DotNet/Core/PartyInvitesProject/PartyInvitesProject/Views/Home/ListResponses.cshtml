@@ -1,0 +1,26 @@
+﻿@model IEnumerable<GuestResponse>;
+@{
+    Layout = null;
+}
+
+Here is the list of responses : 
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.Select(x => x))
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
