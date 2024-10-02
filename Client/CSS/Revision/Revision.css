@@ -1,0 +1,73 @@
+body {
+                /* color image repeat/no-repeat position */
+    background:rgb(210, 245, 250);
+}
+
+.hidden{
+    display:none;
+}
+
+#hoverDiv:hover p{
+    border-style:dotted;
+    border-width:5px 10px;
+    display: block;
+}
+
+p::after{
+    content:'this is span element'
+}
+
+a:link{
+    background-color: #ff0000;
+    text-decoration: none;     
+    padding:1em;
+    display:inline;    
+    width:20em;          
+}
+
+a:hover{
+    color:white;   
+}
+
+ul.demo{
+    list-style-type : none;
+    margin:0;
+    padding:0;
+    width:30%;
+}
+
+#parentDiv{
+    border:dotted 1em blue;
+    max-width:30%;
+    margin:auto;
+}
+
+#inlineDiv{
+    background-color: #ff0000;
+    padding:1em;
+    display:inline;
+}
+
+.imgSize {
+    height:50%;
+    width:60%;
+}
+
+.divImage {
+    width:10em;
+    height:25em;
+    left:82em;
+    position:fixed;
+}
+
+.grid-container {
+    display: inline-grid;
+    grid-template-columns: auto auto auto;  
+    padding: 10px;
+  }
+  
+  .grid-item {
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+  }
