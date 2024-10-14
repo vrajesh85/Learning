@@ -11,6 +11,12 @@ builder.Services.Configure<MessageOptions>(options => {
 
 var app = builder.Build();
 
+app.MapGet("{first}/{second}/{third}", async context => {
+    await context.Response.WriteAsync("This is from URL placeholder");
+    foreach(var val in context.Request.RouteValues)
+        await context.Response.WriteAsync($"The route value is  {val.ToString()} \n");
+});
+
 app.Map("/branch", branch => {
     branch.UseMiddleware<BranchMiddleWare>();
 
