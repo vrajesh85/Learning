@@ -11,6 +11,7 @@ using PracticeApp.Collections;
 using System.Collections;
 using PracticeApp.Design_Patterns;
 using System.Data.Common;
+using System.IO;
 
 namespace PracticeApp
 {
@@ -27,9 +28,13 @@ namespace PracticeApp
         static Thread t2;
         static Thread t3;
         static object _locker = new object();
+        static CancellationTokenSource cts = new CancellationTokenSource();
 
         static void Main(string[] args)
         {
+           // cts.Cancel();
+            WriteAllContentToFile(@"C:\Temp\sample.txt", "India vs New Zealand Highlights, 2nd Test, Day 1: India Lose Rohit Sharma After Washington Sundar Shines With 7 Wickets On Return", cts.Token).Wait(cts.Token);
+
             #region Delegates
 
             //#region DirectCalling
@@ -124,11 +129,11 @@ namespace PracticeApp
             //    int localVariable = i;
             //    actions[i] = () => Console.WriteLine($"value is {localVariable}"); // 0 1 2 
             //}
-            
+
             //foreach (Action action in actions)
             //   action();
 
-            foreach(var element in GetFibnocciNumbers(10))
+            foreach (var element in GetFibnocciNumbers(10))
                 Console.Write(element + " ");
 
             #endregion
@@ -338,6 +343,38 @@ namespace PracticeApp
             #endregion
         }
 
+        public static async Task WriteAllContentToFile(string path, string content, CancellationToken token)
+        {
+            byte[] bytes = Encoding.UTF8.GetBytes(content);
+            await WriteBytesInBatchSizeAsync(path, bytes, 1024, token);
+        }
+
+        public static async Task WriteAllContentToFile(string path, byte[] content, CancellationToken token)
+        {
+            await WriteBytesInBatchSizeAsync(path, content, 1024, token);
+        }
+
+        private static async Task WriteBytesInBatchSizeAsync(string filePath, byte[] data, int batchSize, CancellationToken token)
+        {
+            using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None, bufferSize: 4096, useAsync: true))
+            {
+                for (int offset = 0; offset < data.Length; offset += batchSize)
+                {
+                    if (!token.IsCancellationRequested)
+                    {
+                        // Determine the size of the current batch
+                        int size = Math.Min(batchSize, data.Length - offset);
+                        byte[] batch = new byte[size];
+
+                        // Copy the current batch into a new array
+                        Array.Copy(data, offset, batch, 0, size);
+
+                        // Write the batch asynchronously
+                        await fileStream.WriteAsync(batch, 0, size, token);
+                    }
+                }
+            }
+        }
         static void WriteY(int limit,bool isDone)
         {
             if(!isDone)
