@@ -7,11 +7,12 @@ using System.Text;
 using System.Threading;
 using PracticeApp.Concurrency;
 using System.Threading.Tasks;
-using PracticeApp.Collections;
+using PracticeApp.Regular_Expressions;
 using System.Collections;
 using PracticeApp.Design_Patterns;
 using System.Data.Common;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace PracticeApp
 {
@@ -29,11 +30,54 @@ namespace PracticeApp
         static Thread t3;
         static object _locker = new object();
         static CancellationTokenSource cts = new CancellationTokenSource();
+        static Basics regularExpBasics = new Basics();
 
         static void Main(string[] args)
         {
-           // cts.Cancel();
-            WriteAllContentToFile(@"C:\Temp\sample.txt", "India vs New Zealand Highlights, 2nd Test, Day 1: India Lose Rohit Sharma After Washington Sundar Shines With 7 Wickets On Return", cts.Token).Wait(cts.Token);
+            #region RegularExpressions
+
+            //Match match = regularExpBasics.GetMatch("One colors ? There are two colourss in my head", "colou?rs");
+
+            //Match match2 = match.NextMatch();
+
+            Console.WriteLine(Regex.Escape(@"?")); // \?
+            Console.WriteLine(Regex.Unescape(@"\?")); // ?
+
+            Console.WriteLine($"Do they match  { regularExpBasics.DoTheyMatch("colours are ?", @"(?i)COLOu?rs are \?")}");
+
+            Console.WriteLine($"Do they match { regularExpBasics.DoTheyMatch("b1-c444", @"[a-b]\d-[c-d]\d*")}");
+
+            Console.WriteLine($"Does this email match ? { regularExpBasics.DoTheyMatch("abc855@Gmail.com", @"[a-zA-Z]\d*\@[a-zA-Z].[a-zA-Z]")}");
+
+            Console.WriteLine($"The value is {regularExpBasics.GetMatch("quiz qwerty",@"q[^aeiou]").ToString() }");
+
+            Console.WriteLine($"This string contains punctuation ? { Regex.IsMatch("Yes : please", @"\p{P}") }");
+
+            // Quantifiers
+
+            Console.WriteLine($"Do these words match ? { regularExpBasics.DoTheyMatch("Vemulakonda", @"[a-zA-Z]+") }");
+
+            //string pattern = @"I have a (cat|dog) what is your name \?";
+
+            //string actualString = "I have a dog what is your name ?";
+
+            //MatchCollection matches = Regex.Matches(actualString, pattern);
+
+            //foreach(var item in matches)
+            //{
+            //    Console.WriteLine(item);5
+
+            //}
+
+            //pattern = @"[^abc][d-f][a-b]";
+
+            //actualString = "dec";
+
+
+
+            //Console.WriteLine($"Do they match  { regularExpBasics.DoTheyMatch(actualString, pattern) }");
+
+            #endregion
 
             #region Delegates
 
@@ -133,8 +177,8 @@ namespace PracticeApp
             //foreach (Action action in actions)
             //   action();
 
-            foreach (var element in GetFibnocciNumbers(10))
-                Console.Write(element + " ");
+            //foreach (var element in GetFibnocciNumbers(10))
+            //    Console.Write(element + " ");
 
             #endregion
 
