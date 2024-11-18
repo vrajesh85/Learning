@@ -11,6 +11,6 @@ namespace PracticeApp.Regular_Expressions
     {
         public bool DoTheyMatch(string first, string second) => GetMatch(first, second).Success;
 
-        public Match GetMatch(string first, string second) => Regex.Match(first, second);
+        public Match GetMatch(string first, string second) => Regex.Match(first, second,RegexOptions.Compiled);
     }
 }

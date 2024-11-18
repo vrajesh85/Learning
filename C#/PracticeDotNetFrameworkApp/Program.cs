@@ -40,22 +40,63 @@ namespace PracticeApp
 
             //Match match2 = match.NextMatch();
 
-            Console.WriteLine(Regex.Escape(@"?")); // \?
-            Console.WriteLine(Regex.Unescape(@"\?")); // ?
+            //Console.WriteLine(Regex.Escape(@"?")); // \?
+            //Console.WriteLine(Regex.Unescape(@"\?")); // ?
 
-            Console.WriteLine($"Do they match  { regularExpBasics.DoTheyMatch("colours are ?", @"(?i)COLOu?rs are \?")}");
+            //Console.WriteLine($"Do they match  { regularExpBasics.DoTheyMatch("colours are ?", @"(?i)COLOu?rs are \?")}");
 
-            Console.WriteLine($"Do they match { regularExpBasics.DoTheyMatch("b1-c444", @"[a-b]\d-[c-d]\d*")}");
+            //Console.WriteLine($"Do they match { regularExpBasics.DoTheyMatch("b1-c444", @"[a-b]\d-[c-d]\d*")}");
 
-            Console.WriteLine($"Does this email match ? { regularExpBasics.DoTheyMatch("abc855@Gmail.com", @"[a-zA-Z]\d*\@[a-zA-Z].[a-zA-Z]")}");
+            //Console.WriteLine($"Does this email match ? { regularExpBasics.DoTheyMatch("abc855@Gmail.com", @"[a-zA-Z]\d*\@[a-zA-Z].[a-zA-Z]")}");
 
-            Console.WriteLine($"The value is {regularExpBasics.GetMatch("quiz qwerty",@"q[^aeiou]").ToString() }");
+            //Console.WriteLine($"The value is {regularExpBasics.GetMatch("quiz qwerty",@"q[^aeiou]").ToString() }");
 
-            Console.WriteLine($"This string contains punctuation ? { Regex.IsMatch("Yes : please", @"\p{P}") }");
+            //Console.WriteLine($"This string contains punctuation ? { Regex.IsMatch("Yes : please", @"\p{P}") }");
 
-            // Quantifiers
+            //// Quantifiers
 
-            Console.WriteLine($"Do these words match ? { regularExpBasics.DoTheyMatch("Vemulakonda", @"[a-zA-Z]+") }");
+            //Console.WriteLine($"Do these words match ? { regularExpBasics.DoTheyMatch("Vemulakonda", @"[a-zA-Z]+") }");
+
+            //Console.WriteLine($"My Blood pressure is { regularExpBasics.GetMatch("123456789/8000",@"\d{2,3}/\d{2,3}") }"); // 789/800
+
+            //Console.WriteLine(Regex.IsMatch($"cv.dcx",@"cv.*\.dcx"));
+
+            //Console.WriteLine(Regex.IsMatch($"rajesh123", "[a-zA-Z0-9]+")); // [a-zA-Z0-9]+
+
+            //string html = "<i>By default</i>  <i>greedy</i> creatures happen to very greedy and <i></i>";
+            //// greedy quantifier
+            //foreach (var match in Regex.Matches(html, @"<i>.*</i>"))
+            //    Console.WriteLine($"The value with greedy quantifier is {match}");
+
+            ////lazy quantifier
+            //foreach(var match in Regex.Matches(html, @"<i>.*?</i>"))
+            //    Console.WriteLine($"The value with lazy qunantifiers {match}");
+
+            // positive lookahead
+            //string match = Regex.Match("I have 10           cups", @"\d+\s+(?=cups)").ToString();
+            //Console.WriteLine($"Is that true  {match}");
+
+            //negative lookahead
+            string match = "Don't look for quick hack or quick fix";
+            Console.WriteLine(Regex.Match(match, @"(?i)(?!.*(quick))"));
+
+            // basic password match positive lookahead
+            // Console.WriteLine($"password is 6 chars long with at least one digit --> { Regex.IsMatch("Rajesh1", @"(?=.*\d).{6,}") }");
+
+            // positive lookbehind
+            // Console.WriteLine($" { Regex.IsMatch("","") } ");
+
+
+
+            // word boundary
+            //foreach (Match m in Regex.Matches("Hello 123", @"\w+"))
+            //    Console.WriteLine(m);
+
+            //string pattern = @"\bword\b";
+            //string input = "word words sword word.";
+
+            //foreach (Match m in Regex.Matches(input, pattern))
+            //    Console.WriteLine(m);
 
             //string pattern = @"I have a (cat|dog) what is your name \?";
 
@@ -65,7 +106,7 @@ namespace PracticeApp
 
             //foreach(var item in matches)
             //{
-            //    Console.WriteLine(item);5
+            //    Console.WriteLine(item);5 
 
             //}
 
