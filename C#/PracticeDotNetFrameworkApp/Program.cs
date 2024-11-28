@@ -17,6 +17,29 @@ using PracticeApp.Algorithms;
 
 namespace PracticeApp
 {
+    public class BubbleSort
+    {
+        public int[] Sort(int[] nums)
+        {
+            int arrayLength = nums.Length;
+
+            for(int i = 0; i < arrayLength - 1; i++)
+            {
+                for (int j = 0; j < arrayLength - 1 - i; j++)
+                {
+                    if (nums[j] > nums[j + 1])
+                    {
+                        int temp = nums[j];
+                        nums[j] = nums[j+1];
+                        nums[j+1] = temp;
+                    }
+                }
+            }
+            return nums;
+        }
+    }
+
+    
     internal class Program
     {
         delegate void myFirstDelegate(int percent);
