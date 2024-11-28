@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 using PracticeApp.Regular_Expressions;
 using System.Collections;
 using PracticeApp.Design_Patterns;
-using System.Data.Common;
+using PracticeApp.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
+using PracticeApp.Algorithms;
 
 namespace PracticeApp
 {
@@ -34,6 +35,14 @@ namespace PracticeApp
 
         static void Main(string[] args)
         {
+            //ISwitchmessage objOne = new SubscriberAngleOne();
+            //if (objOne is SubscriberAngleOne v2)
+            //{
+            //    v2.Method("","");
+            //}
+            //objOne.Method("","");
+
+
             #region RegularExpressions
 
             //Match match = regularExpBasics.GetMatch("One colors ? There are two colourss in my head", "colou?rs");
@@ -77,8 +86,8 @@ namespace PracticeApp
             //Console.WriteLine($"Is that true  {match}");
 
             //negative lookahead
-            string match = "Don't look for quick hack or quick fix";
-            Console.WriteLine(Regex.Match(match, @"(?i)(?!.*(quick))"));
+            //string match = "Don't look for quick hack or quick fix";
+            //Console.WriteLine(Regex.Match(match, @"(?i)(?!.*(quick))"));
 
             // basic password match positive lookahead
             // Console.WriteLine($"password is 6 chars long with at least one digit --> { Regex.IsMatch("Rajesh1", @"(?=.*\d).{6,}") }");
@@ -97,6 +106,37 @@ namespace PracticeApp
 
             //foreach (Match m in Regex.Matches(input, pattern))
             //    Console.WriteLine(m);
+
+            // groups
+            //string pattern = @"\b(\w)\w+\b";
+            //foreach (var match in Regex.Matches("pop pope peep", pattern))
+            //    Console.WriteLine(match);
+
+            //pattern = @"(\w+),(\d+),(\w+)";
+            //foreach(Match match in Regex.Matches("Rajesh,39,India", pattern))
+            //    Console.WriteLine(match.Groups[3].Value);
+
+            //pattern = @"(?'Name'\w+),(\d+),(\w+)";
+            //foreach (Match match in Regex.Matches("Rajesh,39,India", pattern))
+            //    Console.WriteLine($"My name is { match.Groups["Name"].Value }");
+
+            //string regFind = @"<(?'tag'\w+?).*>" + // lazy-match first tag, and name it 'tag'
+            //                 @"(?'text'.*?)" + // lazy-match text content, name it 'text'
+            //                 @"</\k'tag'>"; // match last tag, denoted by 'tag'
+            //string regReplace = @"<${tag}" + // <tag
+            //                 @" value=""" + // value="
+            //                 @"${text}" + // text
+            //                 @"""/>"; // "/>
+
+            //Console.WriteLine(Regex.Replace("<msg>Rajesh</msg>", regFind, regReplace));
+
+            //// Splitting 
+            // foreach(string s in Regex.Split("a1b2c3", @"\d"))
+            //    Console.WriteLine(s);
+
+            // foreach(string s in Regex.Split("OneTwoThree", @"(?=[A-Z])"))
+            //    Console.WriteLine(s);
+
 
             //string pattern = @"I have a (cat|dog) what is your name \?";
 
@@ -344,6 +384,25 @@ namespace PracticeApp
 
             #region Collections
 
+            // MyCustomEnumerator objEnumerator1 = new MyCustomEnumerator();
+            // // objEnumerator1.List = strArray;
+            //  objEnumerator1.BuildRecursive(new string[] { "Rajesh", "VRPantulu"} );
+            //  objEnumerator1.RecursiveCount(new int[1, 2, 3, 4, 5]);
+
+            //  MyCustomEnumerator objEnumerator2 = new MyCustomEnumerator();
+            ////  objEnumerator2.List = strArray;
+
+            //  objEnumerator1.MoveNext();
+            //  objEnumerator2.MoveNext();
+
+            //   MyCollectionEnumerable objEnumerable = new MyCollectionEnumerable();
+            //var enumerator = objEnumerable.GetEnumerator();
+            //while (enumerator.MoveNext())
+            //{
+            //    int current = (int)enumerator.Current;
+            //    Console.WriteLine($"The value of current is {current}");
+            //}
+
             //int[] array1 = new int[] {1,2,3};
             //int[] array2 = new int[] {1,2,3};
 
@@ -386,16 +445,13 @@ namespace PracticeApp
             //Console.WriteLine(objEnumerator.stringLine);
 
 
-            //MyCollectionEnumerable objEnumerable = new MyCollectionEnumerable();
-            ////var enumerator = objEnumerable.GetEnumerator();
-            ////enumerator.MoveNext();
-            ////int current = (int)enumerator.Current;
+
 
             //System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
             //sw.Start();
-            //if(objEnumerable.GetEvenNumbersWithYieldReturn(10).Any())
-            //    foreach (var num in objEnumerable.GetEvenNumbersWithYieldReturn(10))
-            //    Console.WriteLine($"value is  {num}");
+            //if (objEnumerable.GetEvenNumbersWithYieldReturn(10).Any())
+            //    foreach (var num in objEnumerable.GetEvenNumbersWithYieldReturn(100))
+            //        Console.WriteLine($"value is  {num}");
             //sw.Stop();
 
             //var elapsed = sw.Elapsed;
@@ -403,12 +459,20 @@ namespace PracticeApp
             //Console.WriteLine($"time taken with yield return is {elapsed.Seconds} and {elapsed.Milliseconds}");
 
             //sw.Start();
-            //objEnumerable.GetEvenNumbersWithoutYieldReturn(10);
+            //objEnumerable.GetEvenNumbersWithoutYieldReturn(100);
             //sw.Stop();
 
             //elapsed = sw.Elapsed;
 
             //Console.WriteLine($"time taken without yield return is {elapsed.Seconds} and {elapsed.Milliseconds}");
+
+            #endregion
+
+            #region Algorithms
+
+            BubbleSort bubbleSort = new BubbleSort();
+            foreach(var value in bubbleSort.Sort(new int[] { 50, 40, 30, 20, 10 }))
+                Console.WriteLine(value.ToString());
 
             #endregion
 
@@ -586,25 +650,38 @@ namespace PracticeApp
             }
         }
 
-        public class SubscriberZerodha
+        public class SubscriberZerodha : ISwitchmessage
         {            
             public void OnStockPriceChanged1(object sender, PriceChangedEventArgs e)
             {
                 if (e.OldPrice != e.NewPrice)
                     Console.WriteLine($"Price changed event from Zerodha");
+            }            
+
+            public void Method(string arg1, string arg2)
+            {
+               // throw new NotImplementedException();
             }
         }
 
-        public class SubscriberAngleOne
+        public class SubscriberAngleOne : SubscriberZerodha
         {
             public void OnStockPriceChanged2(object sender, PriceChangedEventArgs e)
             {
                 if (e.OldPrice != e.NewPrice)
                     Console.WriteLine($"Price changed event from AngelOne");
             }
+
+            public void Method(string arg1, string arg2)
+            {
+               // throw new NotImplementedException();
+            }
         }
 
-        
+        interface ISwitchmessage
+        {
+            void Method(string arg1, string arg2);
+        }
 
         
     }
