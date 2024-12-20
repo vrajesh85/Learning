@@ -9,10 +9,11 @@ using PracticeApp.Concurrency;
 using System.Threading.Tasks;
 using PracticeApp.Regular_Expressions;
 using System.Collections;
-using PracticeApp.Design_Patterns;
+//using PracticeApp.Design_Patterns;
 using System.Data.Common;
 using System.IO;
 using System.Text.RegularExpressions;
+using PracticeApp.Networking;
 
 namespace PracticeApp
 {
@@ -34,6 +35,18 @@ namespace PracticeApp
 
         static void Main(string[] args)
         {
+
+            #region Networking
+
+            var api = new SampleAPI();
+           // api.GetTodoIitemsWithClient().Wait();
+
+            Task.Run(async () => await api.GetTodoIitemsWithClient()).Wait();
+
+            Thread.Sleep(1000);
+
+            #endregion
+
             #region RegularExpressions
 
             //Match match = regularExpBasics.GetMatch("One colors ? There are two colourss in my head", "colou?rs");
@@ -77,8 +90,8 @@ namespace PracticeApp
             //Console.WriteLine($"Is that true  {match}");
 
             //negative lookahead
-            string match = "Don't look for quick hack or quick fix";
-            Console.WriteLine(Regex.Match(match, @"(?i)(?!.*(quick))"));
+            //string match = "Don't look for quick hack or quick fix";
+            //Console.WriteLine(Regex.Match(match, @"(?i)(?!.*(quick))"));
 
             // basic password match positive lookahead
             // Console.WriteLine($"password is 6 chars long with at least one digit --> { Regex.IsMatch("Rajesh1", @"(?=.*\d).{6,}") }");

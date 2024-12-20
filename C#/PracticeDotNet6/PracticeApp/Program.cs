@@ -1,5 +1,10 @@
-﻿
+﻿using PracticeApp.Networking;
 using System.Text;
+
+SampleAPI objSampleApi = new SampleAPI();
+await objSampleApi.PostDummyRestApiExample();
+await objSampleApi.GetTodoItemsWithHandler();
+Task.Run(async () => await objSampleApi.GetTodoIitemsWithClient()).Wait();
 
 Point p1 = new Point();
 p1.x = 1;
