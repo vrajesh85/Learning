@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\BubbleSort.cs" />
     <Compile Include="Collections\MyCustomEnumerator.cs" />
     <Compile Include="Concurrency\Tasks.cs" />
     <Compile Include="Delegates.cs" />

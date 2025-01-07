@@ -10,9 +10,11 @@ using System.Threading.Tasks;
 using PracticeApp.Regular_Expressions;
 using System.Collections;
 using PracticeApp.Design_Patterns;
-using System.Data.Common;
+using PracticeApp.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
+using PracticeApp.Algorithms;
+using System.Reflection;
 
 namespace PracticeApp
 {
@@ -28,12 +30,30 @@ namespace PracticeApp
         static Thread t1;
         static Thread t2;
         static Thread t3;
+        static string MachineId, CurrentMachineId;
         static object _locker = new object();
         static CancellationTokenSource cts = new CancellationTokenSource();
         static Basics regularExpBasics = new Basics();
+        static readonly List<string> _list = new List<string>();
+
+        static Lazy<Expensive> _expensive = new Lazy<Expensive>(() => new Expensive(100), true);
+        static public Expensive objExpensive {  get { return _expensive.Value; } }
+
+        struct Point
+        {
+            public int x;
+            public int y;
+        }
 
         static void Main(string[] args)
         {
+            //ISwitchmessage objOne = new SubscriberAngleOne();
+            //if (objOne is SubscriberAngleOne v2)
+            //{
+            //    v2.Method("","");
+            //}
+            //objOne.Method("","");
+
             #region RegularExpressions
 
             //Match match = regularExpBasics.GetMatch("One colors ? There are two colourss in my head", "colou?rs");
@@ -77,8 +97,8 @@ namespace PracticeApp
             //Console.WriteLine($"Is that true  {match}");
 
             //negative lookahead
-            string match = "Don't look for quick hack or quick fix";
-            Console.WriteLine(Regex.Match(match, @"(?i)(?!.*(quick))"));
+            //string match = "Don't look for quick hack or quick fix";
+            //Console.WriteLine(Regex.Match(match, @"(?i)(?!.*(quick))"));
 
             // basic password match positive lookahead
             // Console.WriteLine($"password is 6 chars long with at least one digit --> { Regex.IsMatch("Rajesh1", @"(?=.*\d).{6,}") }");
@@ -97,6 +117,37 @@ namespace PracticeApp
 
             //foreach (Match m in Regex.Matches(input, pattern))
             //    Console.WriteLine(m);
+
+            // groups
+            //string pattern = @"\b(\w)\w+\b";
+            //foreach (var match in Regex.Matches("pop pope peep", pattern))
+            //    Console.WriteLine(match);
+
+            //pattern = @"(\w+),(\d+),(\w+)";
+            //foreach(Match match in Regex.Matches("Rajesh,39,India", pattern))
+            //    Console.WriteLine(match.Groups[3].Value);
+
+            //pattern = @"(?'Name'\w+),(\d+),(\w+)";
+            //foreach (Match match in Regex.Matches("Rajesh,39,India", pattern))
+            //    Console.WriteLine($"My name is { match.Groups["Name"].Value }");
+
+            //string regFind = @"<(?'tag'\w+?).*>" + // lazy-match first tag, and name it 'tag'
+            //                 @"(?'text'.*?)" + // lazy-match text content, name it 'text'
+            //                 @"</\k'tag'>"; // match last tag, denoted by 'tag'
+            //string regReplace = @"<${tag}" + // <tag
+            //                 @" value=""" + // value="
+            //                 @"${text}" + // text
+            //                 @"""/>"; // "/>
+
+            //Console.WriteLine(Regex.Replace("<msg>Rajesh</msg>", regFind, regReplace));
+
+            //// Splitting 
+            // foreach(string s in Regex.Split("a1b2c3", @"\d"))
+            //    Console.WriteLine(s);
+
+            // foreach(string s in Regex.Split("OneTwoThree", @"(?=[A-Z])"))
+            //    Console.WriteLine(s);
+
 
             //string pattern = @"I have a (cat|dog) what is your name \?";
 
@@ -225,15 +276,36 @@ namespace PracticeApp
 
             #region MultiThreading
 
+            #region Basic Examples
+
+
+            //Thread thread = new Thread(() => WriteY(10));
+            //thread.Name = "Second";
+            //thread.Start();
+            //WriteX(10);
+
+            #endregion
+
             #region Joins & Signaling
 
             //thread1 = new Thread(ThreadProc);
             //thread1.Name = "Thread1";
             //thread1.Start();
+            //thread1.Join();
+            //Console.WriteLine("This is called later");
 
-            //thread2 = new Thread(ThreadProc);
-            //thread2.Name = "Thread2";
-            //thread2.Start();
+            ////thread2 = new Thread(ThreadProc);
+            ////thread2.Name = "Thread2";
+            ////thread2.Start();
+
+            //void ThreadProc()
+            //{
+            //    for (int i = 0; i < 5; i++)
+            //    {
+            //        Console.WriteLine("Thread Proc");
+            //    }
+            //}
+
 
             //firstThread = new Thread(PrintX);
             //secondThread = new Thread(PrintY);
@@ -266,16 +338,17 @@ namespace PracticeApp
             #region Shared State Without Static
             //int limit = 10;
             //bool isDone = false;
-            //firstThread = new Thread(() => WriteX(limit));
-            //secondThread = new Thread(() => WriteY(limit));
+            //ThreadTest threadTest = new ThreadTest();
+            //firstThread = new Thread(() => threadTest.Go());
+            //secondThread = new Thread(() => threadTest.Go());
             //firstThread.Name = "First Thread";
             //secondThread.Name = "Second Thread";
             //firstThread.Start();
             //secondThread.Start();
 
-            //Console.WriteLine($"current thread is {Thread.CurrentThread.Name} and it's state is {Thread.CurrentThread.ThreadState}");
-            //Console.WriteLine($"first thread is {firstThread.Name} and it's state is {firstThread.ThreadState}");
-            //  WriteX(limit);
+            //Console.WriteLine($"\ncurrent thread is {Thread.CurrentThread.Name} and it's state is {Thread.CurrentThread.ThreadState}");
+            //Console.WriteLine($"\nfirst thread is {firstThread.Name} and it's state is {firstThread.ThreadState}");
+            //WriteZ(limit);
             #endregion
 
             #region Shared State With Static
@@ -289,37 +362,156 @@ namespace PracticeApp
             #endregion
 
             #region Other Examples
-            //for(int i = 0; i < 5; i++)
-            //{
-            //    //int temp = i;
-            //    new Thread(() => Console.Write(i)).Start();
-            //}
 
-            //string str = "A";
-            //var t1 = new Thread(() => Console.WriteLine(str));
+            var somevalue = objExpensive;
 
-            //str = "B";
-            //var t2 = new Thread(() => Console.WriteLine(str));
-            //t1.Start();
-            //t2.Start();
 
-            //try
-            //{
-            //    new Thread(ThrowNull).Start();
-            //}
-            //catch(Exception ex)
-            //{
-            //    //We never reach here..Reason : Every thread has an independent execution path and hence the above thread gets
-            //    //                     struck in a method that throws null and it doesn't come back here
-            //    Console.WriteLine("Exception");
-            //}
+           //for(int i = 0; i < 5; i++)
+           //{
+           //    //int temp = i;
+           //    new Thread(() => Console.Write(i)).Start();
+           //}
+
+           //string str = "A";
+           //var t1 = new Thread(() => Console.WriteLine(str));
+
+           //str = "B";
+           //var t2 = new Thread(() => Console.WriteLine(str));
+           //t1.Start();
+           //t2.Start();
+
+           //Thread worker = new Thread(() => Console.ReadLine());
+           //    if(args.Length > 0) 
+           //    worker.IsBackground = true;
+
+           //    worker.Start();
+
+           //try
+           //{
+           //    new Thread(ThrowNull).Start();
+           //}
+           //catch(Exception ex)
+           //{
+           //    //We never reach here..Reason : Every thread has an independent execution path and hence the above thread gets
+           //    //                     struck in a method that throws null and it doesn't come back here
+           //    Console.WriteLine("Exception");
+           //}
+
+
             #endregion
 
             #region Background threads
-            //Thread worker = new Thread(() => Console.ReadLine());
-            //if(args.Length > 0)
-            //worker.IsBackground = true;
-            //worker.Start();
+           //Thread worker = new Thread(() => Console.ReadLine());
+           //if(args.Length > 0)
+           //worker.IsBackground = true;
+           //worker.Start();
+
+            #endregion
+
+            #region Thread Synchronization
+
+           //var signal = new AutoResetEvent(false);
+
+           //new Thread(() =>
+           //{
+           //    Console.WriteLine("Waiting for signal...");
+           //    signal.WaitOne();
+           //    signal.Dispose();
+           //    Thread.Sleep(3000);
+           //    Console.WriteLine("Signal Received");
+           //}).Start();
+
+           //new Thread(() =>
+           //{
+           //    Console.WriteLine("Waiting for signal...2");
+           //    signal.WaitOne();
+           //    signal.Dispose();
+           //    Thread.Sleep(3000);
+           //    Console.WriteLine("Signal Received 2");
+           //}).Start();
+
+           ////Thread.Sleep(3000);
+           //signal.Set();
+
+           var manualSignal = new ManualResetEvent(false);
+
+            new Thread(() =>
+            {
+                Console.WriteLine("Waiting for manual signal...");
+                manualSignal.WaitOne();
+                manualSignal.Dispose();
+                Thread.Sleep(3000);
+                Console.WriteLine("Signal Received...");
+            }).Start();
+
+            new Thread(() =>
+            {
+                Console.WriteLine("Waiting for manual signal 2");
+                manualSignal.WaitOne();
+                manualSignal.Dispose();
+                Thread.Sleep(3000);
+                Console.WriteLine("Signal received 2");
+            }).Start();
+
+            manualSignal.Set();
+
+            #endregion
+
+            #region Exclusive Locks
+
+            //int _val1 = 1, _val2 = 1;
+            //void Go()
+            //{
+            //    lock (_locker)
+            //    {
+            //        if (_val2 != 0)
+            //            Console.WriteLine($"The value is {_val1 / _val2}");
+
+            //        _val2 = 0;
+            //    }
+            //}
+            //new Thread(Go).Start();
+            //new Thread(Go).Start();
+
+
+
+            //new Thread(AddItem).Start();
+            //new Thread(AddItem).Start();
+
+            //void AddItem()
+            //{
+            //   lock (_list)
+            //        _list.Add($"Item : {_list.Count}");
+
+            //    string[] _items;
+            //    lock(_list)
+            //        _items = _list.ToArray();
+            //    foreach (string _item in _items)
+            //        Console.WriteLine($"the value of item is {_item}");
+            //}
+
+            //Point point = new Point();
+
+            //new Thread(AddX).Start();
+            //new Thread(AddY).Start();
+
+            //void AddX()
+            //{
+            //    for(int i = 1; i < 5; i++)
+            //    {
+            //        point.x += i;
+            //        Console.WriteLine($"point x is {point.x}");
+            //    }
+            //}
+
+            //void AddY()
+            //{
+            //    for (int i = 1; i < 5; i++)
+            //    {
+            //        point.y += i;
+            //        Console.WriteLine($"point y is {point.y}");
+            //    }
+            //}
 
             #endregion
 
@@ -343,6 +535,25 @@ namespace PracticeApp
             #endregion
 
             #region Collections
+
+            // MyCustomEnumerator objEnumerator1 = new MyCustomEnumerator();
+            // // objEnumerator1.List = strArray;
+            //  objEnumerator1.BuildRecursive(new string[] { "Rajesh", "VRPantulu"} );
+            //  objEnumerator1.RecursiveCount(new int[1, 2, 3, 4, 5]);
+
+            //  MyCustomEnumerator objEnumerator2 = new MyCustomEnumerator();
+            ////  objEnumerator2.List = strArray;
+
+            //  objEnumerator1.MoveNext();
+            //  objEnumerator2.MoveNext();
+
+            //   MyCollectionEnumerable objEnumerable = new MyCollectionEnumerable();
+            //var enumerator = objEnumerable.GetEnumerator();
+            //while (enumerator.MoveNext())
+            //{
+            //    int current = (int)enumerator.Current;
+            //    Console.WriteLine($"The value of current is {current}");
+            //}
 
             //int[] array1 = new int[] {1,2,3};
             //int[] array2 = new int[] {1,2,3};
@@ -386,16 +597,13 @@ namespace PracticeApp
             //Console.WriteLine(objEnumerator.stringLine);
 
 
-            //MyCollectionEnumerable objEnumerable = new MyCollectionEnumerable();
-            ////var enumerator = objEnumerable.GetEnumerator();
-            ////enumerator.MoveNext();
-            ////int current = (int)enumerator.Current;
+
 
             //System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
             //sw.Start();
-            //if(objEnumerable.GetEvenNumbersWithYieldReturn(10).Any())
-            //    foreach (var num in objEnumerable.GetEvenNumbersWithYieldReturn(10))
-            //    Console.WriteLine($"value is  {num}");
+            //if (objEnumerable.GetEvenNumbersWithYieldReturn(10).Any())
+            //    foreach (var num in objEnumerable.GetEvenNumbersWithYieldReturn(100))
+            //        Console.WriteLine($"value is  {num}");
             //sw.Stop();
 
             //var elapsed = sw.Elapsed;
@@ -403,12 +611,20 @@ namespace PracticeApp
             //Console.WriteLine($"time taken with yield return is {elapsed.Seconds} and {elapsed.Milliseconds}");
 
             //sw.Start();
-            //objEnumerable.GetEvenNumbersWithoutYieldReturn(10);
+            //objEnumerable.GetEvenNumbersWithoutYieldReturn(100);
             //sw.Stop();
 
             //elapsed = sw.Elapsed;
 
             //Console.WriteLine($"time taken without yield return is {elapsed.Seconds} and {elapsed.Milliseconds}");
+
+            #endregion
+
+            #region Algorithms
+
+            //BubbleSort bubbleSort = new BubbleSort();
+            //foreach(var value in bubbleSort.Sort(new int[] { 50, 40, 30, 20, 10 }))
+            //    Console.WriteLine(value.ToString());
 
             #endregion
 
@@ -424,6 +640,20 @@ namespace PracticeApp
             //objSender.Subscribe(objObserver3);
 
             //objSender.NotifyObservers();
+
+            #endregion
+
+            #region Reflection
+
+            //Type t1 = typeof(DateTime); // compile time
+            //Type t2 = DateTime.Now.GetType(); // runtime 
+
+            //t1 = Assembly.GetExecutingAssembly().GetType("PracticeApp.Program");
+
+            //MemberInfo[] members = typeof(Walnut).GetMembers();
+
+            //foreach(MemberInfo member in members) 
+            //    Console.WriteLine(member);
 
             #endregion
         }
@@ -460,9 +690,9 @@ namespace PracticeApp
                 }
             }
         }
-        static void WriteY(int limit,bool isDone)
+        static void WriteY(int limit, bool isDone)
         {
-            if(!isDone)
+            if (!isDone)
             {
                 for (int i = 0; i < limit; i++)
                 {
@@ -481,8 +711,17 @@ namespace PracticeApp
                     Console.Write("x");
                 }
             }
-            
+
         }
+
+        public static bool IsNewInstallation()
+        {
+            if (string.Compare(MachineId, CurrentMachineId, StringComparison.CurrentCultureIgnoreCase) == 0)
+                return false;
+
+            return true;
+        }
+
 
         static void WriteY(int limit)
         {
@@ -507,13 +746,24 @@ namespace PracticeApp
             }
         }
 
+        static void WriteZ(int limit)
+        {
+            // if (!flag)
+            {
+                for (int i = 0; i < limit; i++)
+                {
+                    Console.Write("z");
+                }
+            }
+        }
+
         static void Go()
         {
-            lock(_locker)
+            lock (_locker)
             {
                 if (!flag)
                 {
-                   Console.WriteLine("Done");
+                    Console.WriteLine($"Done and current thread is {Thread.CurrentThread.Name}");
                 }
                 flag = true;
             }
@@ -526,13 +776,13 @@ namespace PracticeApp
             if (!flag)
             {
                 Console.WriteLine("Done");
-            }  
+            }
             flag = true;
         }
 
         static void PrintX()
         {
-            for(int i = 0; i< 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 Console.WriteLine("X");
             }
@@ -550,7 +800,7 @@ namespace PracticeApp
 
         static void Increment()
         {
-            for (int i = 1; i<=5; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 lock (_locker)
                 {
@@ -575,38 +825,81 @@ namespace PracticeApp
 
         static IEnumerable<int> GetFibnocciNumbers(int count)
         {
-            for(int i = 0, prevFib = 1, currentFib = 1; i < count; i++)
+            for (int i = 0, prevFib = 1, currentFib = 1; i < count; i++)
             {
                 yield return prevFib;
                 int result = prevFib + currentFib;
                 prevFib = currentFib;
-                currentFib = result;       
+                currentFib = result;
                 if (i > 5)
                     yield break;
             }
         }
 
-        public class SubscriberZerodha
-        {            
+        public class SubscriberZerodha : ISwitchmessage
+        {
             public void OnStockPriceChanged1(object sender, PriceChangedEventArgs e)
             {
                 if (e.OldPrice != e.NewPrice)
                     Console.WriteLine($"Price changed event from Zerodha");
             }
+
+            public void Method(string arg1, string arg2)
+            {
+                // throw new NotImplementedException();
+            }
         }
 
-        public class SubscriberAngleOne
+        public class SubscriberAngleOne : SubscriberZerodha
         {
             public void OnStockPriceChanged2(object sender, PriceChangedEventArgs e)
             {
                 if (e.OldPrice != e.NewPrice)
                     Console.WriteLine($"Price changed event from AngelOne");
             }
+
+            public void Method(string arg1, string arg2)
+            {
+                // throw new NotImplementedException();
+            }
         }
 
-        
-
-        
+        interface ISwitchmessage
+        {
+            void Method(string arg1, string arg2);
+        }
     }
 
+    class Walnut
+    {
+        private bool cracked;
+        public bool Cracked { get; set; }
+        public void Crack() { cracked = true; }
+    }
+
+    class ThreadTest
+    {
+        bool _isDone;
+
+        public void Go()
+        {
+            if (!_isDone)
+            {
+                _isDone = true;
+                Console.WriteLine("Done");
+            }
+        }
+    }
+
+    class Expensive
+    {
+        public Expensive(int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine($"The value is {i}");
+            }
+        }
+
+    }
 }

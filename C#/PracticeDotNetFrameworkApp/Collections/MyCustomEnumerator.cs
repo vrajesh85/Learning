@@ -6,7 +6,15 @@ namespace PracticeApp.Collections
 {
     public class MyCustomEnumerator : IEnumerator
     {
-        public string[] List { get; set; }
+        public string[] List { get; set; } = new string[]
+        {
+                "V R Pantulu",
+                "V Kasturi",
+                "Rajesh",
+                "Srividya",
+                "Ashritha",
+                "Ananya"
+        };
         public string stringLine { get; set; }
         public int Count { get; set; } = 0;
         public bool HasRecords => List.Length != Count;
@@ -32,7 +40,6 @@ namespace PracticeApp.Collections
 
         public string BuildRecursive(IEnumerable stringValue)
         {
-
             string resultString = string.Empty;
             foreach (var item in stringValue)
             {
@@ -44,6 +51,20 @@ namespace PracticeApp.Collections
             }
             stringLine += " " + resultString;
             return resultString;
+        }
+
+        public int RecursiveCount(IEnumerable e)
+        {
+            int count = 0;
+            foreach (object element in e)
+            {
+                var subCollection = element as IEnumerable;
+                if (subCollection != null)
+                    count += RecursiveCount(subCollection);
+                else
+                    count++;
+            }
+            return count;
         }
     }
 
@@ -63,7 +84,7 @@ namespace PracticeApp.Collections
             for(int i =0; i <= count; i+=2)
             {
                 yield return i;
-                Console.WriteLine($"This will get executed with value after {i}");
+               // Console.WriteLine($"This will get executed with value after {i}");
             }
         }
 
