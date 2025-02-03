@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -14,8 +15,9 @@ namespace PracticeApp.Networking
 
        // private HttpClient _client;
 
-        public async Task GetTodoIitemsWithClient()
+        public async Task<string> GetTodoIitemsWithClientAsync()
         {
+            string result = string.Empty;
             try
             {
                 using (var _client = new HttpClient())
@@ -30,7 +32,7 @@ namespace PracticeApp.Networking
 
                     response.EnsureSuccessStatusCode();
 
-                    string html = await response.Content.ReadAsStringAsync();
+                    result  = await response.Content.ReadAsStringAsync();
                 }
             }
             catch (HttpRequestException ex)
@@ -40,6 +42,17 @@ namespace PracticeApp.Networking
             catch (Exception ex)
             {
                 throw ex;
+            }
+            return result;
+        }
+
+        public string GetTodoItemsWithClient()
+        {
+            using (var _client = new WebClient())
+            {
+                _client.BaseAddress = "https://jsonplaceholder.typicode.com";
+                var response = _client.DownloadString("/todos/1");
+                return response;
             }
         }
     }

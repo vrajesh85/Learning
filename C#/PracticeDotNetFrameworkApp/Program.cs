@@ -9,12 +9,14 @@ using PracticeApp.Concurrency;
 using System.Threading.Tasks;
 using PracticeApp.Regular_Expressions;
 using System.Collections;
-using PracticeApp.Design_Patterns;
+//using PracticeApp.Design_Patterns;
 using PracticeApp.Collections;
 using System.IO;
 using System.Text.RegularExpressions;
 using PracticeApp.Algorithms;
 using System.Reflection;
+using Stopwatch = System.Diagnostics;
+using PracticeApp.Networking;
 
 namespace PracticeApp
 {
@@ -363,97 +365,97 @@ namespace PracticeApp
 
             #region Other Examples
 
-            var somevalue = objExpensive;
+            // var somevalue = objExpensive;
 
 
-           //for(int i = 0; i < 5; i++)
-           //{
-           //    //int temp = i;
-           //    new Thread(() => Console.Write(i)).Start();
-           //}
+            //for(int i = 0; i < 5; i++)
+            //{
+            //    //int temp = i;
+            //    new Thread(() => Console.Write(i)).Start();
+            //}
 
-           //string str = "A";
-           //var t1 = new Thread(() => Console.WriteLine(str));
+            //string str = "A";
+            //var t1 = new Thread(() => Console.WriteLine(str));
 
-           //str = "B";
-           //var t2 = new Thread(() => Console.WriteLine(str));
-           //t1.Start();
-           //t2.Start();
+            //str = "B";
+            //var t2 = new Thread(() => Console.WriteLine(str));
+            //t1.Start();
+            //t2.Start();
 
-           //Thread worker = new Thread(() => Console.ReadLine());
-           //    if(args.Length > 0) 
-           //    worker.IsBackground = true;
+            //Thread worker = new Thread(() => Console.ReadLine());
+            //    if(args.Length > 0) 
+            //    worker.IsBackground = true;
 
-           //    worker.Start();
+            //    worker.Start();
 
-           //try
-           //{
-           //    new Thread(ThrowNull).Start();
-           //}
-           //catch(Exception ex)
-           //{
-           //    //We never reach here..Reason : Every thread has an independent execution path and hence the above thread gets
-           //    //                     struck in a method that throws null and it doesn't come back here
-           //    Console.WriteLine("Exception");
-           //}
+            //try
+            //{
+            //    new Thread(ThrowNull).Start();
+            //}
+            //catch(Exception ex)
+            //{
+            //    //We never reach here..Reason : Every thread has an independent execution path and hence the above thread gets
+            //    //                     struck in a method that throws null and it doesn't come back here
+            //    Console.WriteLine("Exception");
+            //}
 
 
             #endregion
 
             #region Background threads
-           //Thread worker = new Thread(() => Console.ReadLine());
-           //if(args.Length > 0)
-           //worker.IsBackground = true;
-           //worker.Start();
+            //Thread worker = new Thread(() => Console.ReadLine());
+            //if(args.Length > 0)
+            //worker.IsBackground = true;
+            //worker.Start();
 
             #endregion
 
             #region Thread Synchronization
 
-           //var signal = new AutoResetEvent(false);
+            //var signal = new AutoResetEvent(false);
 
-           //new Thread(() =>
-           //{
-           //    Console.WriteLine("Waiting for signal...");
-           //    signal.WaitOne();
-           //    signal.Dispose();
-           //    Thread.Sleep(3000);
-           //    Console.WriteLine("Signal Received");
-           //}).Start();
+            //new Thread(() =>
+            //{
+            //    Console.WriteLine("Waiting for signal...");
+            //    signal.WaitOne();
+            //    signal.Dispose();
+            //    Thread.Sleep(3000);
+            //    Console.WriteLine("Signal Received");
+            //}).Start();
 
-           //new Thread(() =>
-           //{
-           //    Console.WriteLine("Waiting for signal...2");
-           //    signal.WaitOne();
-           //    signal.Dispose();
-           //    Thread.Sleep(3000);
-           //    Console.WriteLine("Signal Received 2");
-           //}).Start();
+            //new Thread(() =>
+            //{
+            //    Console.WriteLine("Waiting for signal...2");
+            //    signal.WaitOne();
+            //    signal.Dispose();
+            //    Thread.Sleep(3000);
+            //    Console.WriteLine("Signal Received 2");
+            //}).Start();
 
-           ////Thread.Sleep(3000);
-           //signal.Set();
+            ////Thread.Sleep(3000);
+            //signal.Set();
 
-           var manualSignal = new ManualResetEvent(false);
+            //var manualSignal = new ManualResetEvent(false);
 
-            new Thread(() =>
-            {
-                Console.WriteLine("Waiting for manual signal...");
-                manualSignal.WaitOne();
-                manualSignal.Dispose();
-                Thread.Sleep(3000);
-                Console.WriteLine("Signal Received...");
-            }).Start();
+            // new Thread(() =>
+            // {
+            //     Console.WriteLine("Waiting for manual signal...");
+            //     manualSignal.WaitOne();
+            //     manualSignal.Dispose();
+            //     Thread.Sleep(3000);
+            //     Console.WriteLine("Signal Received...");
+            // }).Start();
 
-            new Thread(() =>
-            {
-                Console.WriteLine("Waiting for manual signal 2");
-                manualSignal.WaitOne();
-                manualSignal.Dispose();
-                Thread.Sleep(3000);
-                Console.WriteLine("Signal received 2");
-            }).Start();
+            // new Thread(() =>
+            // {
+            //     Console.WriteLine("Waiting for manual signal 2");
+            //     manualSignal.WaitOne();
+            //     manualSignal.Dispose();
+            //     Thread.Sleep(3000);
+            //     Console.WriteLine("Signal received 2");
+            // }).Start();
 
-            manualSignal.Set();
+            // manualSignal.Set();
 
             #endregion
 
@@ -531,6 +533,23 @@ namespace PracticeApp
 
             //Console.WriteLine($"is task completed {resultTask.IsCompleted} and " +
             //  $"status is {resultTask.Status} at time {DateTime.Now.Ticks}");
+
+            //GetPrimeCount(1, 1000);
+            //GetPrimeCountAsync(1, 1000);
+            //Thread.Sleep(5000);
+
+            SampleAPI objApi = new SampleAPI();
+            Stopwatch.Stopwatch watch = new Stopwatch.Stopwatch();
+            watch.Start();
+            Console.WriteLine(objApi.GetTodoIitemsWithClientAsync().Result);
+            watch.Stop();
+            Console.WriteLine($"Total time taken with async is {watch.ElapsedMilliseconds} ms");
+
+            //Stopwatch.Stopwatch watch2 = new Stopwatch.Stopwatch();
+            //watch2.Start();
+            //Console.WriteLine(objApi.GetTodoItemsWithClient());
+            //watch2.Stop();
+            //Console.WriteLine($"Total time taken is {watch2.ElapsedMilliseconds} ms");
 
             #endregion
 
@@ -712,6 +731,42 @@ namespace PracticeApp
                 }
             }
 
+        }
+
+        static void GetPrimeCount(int start, int count)
+        {
+            Console.WriteLine("Started");
+            Stopwatch.Stopwatch stopwatch = new Stopwatch.Stopwatch();
+            stopwatch.Start();
+            PrintNumbers(start, count);
+            stopwatch.Stop();
+            Console.WriteLine($"Total time taken : {stopwatch.Elapsed.Milliseconds}");
+        }
+
+        static async void GetPrimeCountAsync(int start, int count)
+        {
+            Console.WriteLine("Started");
+            Stopwatch.Stopwatch stopwatch = new Stopwatch.Stopwatch();
+            stopwatch.Start();
+            await PrintNumbersAsync(start, count);
+            stopwatch.Stop();
+            Console.WriteLine($"Total time taken in async : {stopwatch.Elapsed.Milliseconds}");
+        }
+
+        static void PrintNumbers(int start, int count)
+        {
+            foreach (var number in Enumerable.Range(start, count))
+                Console.WriteLine(number);
+        }
+
+        static async Task PrintNumbersAsync(int start, int count)
+        {
+             await Task.Run(() => {
+                            foreach (var number in Enumerable.Range(start, count))
+                                Console.WriteLine(number);
+                        });
+
+            
         }
 
         public static bool IsNewInstallation()

@@ -66,10 +66,11 @@ app.UseMiddleware<TestingDIMiddleWareTwo>();
 //});
 
 
-//app.Use(async (context, next) => {
-//    await next();
-//    await context.Response.WriteAsync($" the status code is {context.Response.StatusCode}");
-//});
+app.Use(async (context, next) =>
+{
+    await next();
+    await context.Response.WriteAsync($" the status code is {context.Response.StatusCode}");
+});
 
 //app.Use(async (context, next) => {
 //    if (context.Request.Method == "GET" && context.Request.Query["custom"] == "true") {
