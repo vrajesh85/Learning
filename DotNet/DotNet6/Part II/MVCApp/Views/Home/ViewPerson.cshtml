@@ -1,0 +1,28 @@
+﻿@model Person
+@{
+    string name = "Rajesh";
+}
+
+
+<div>
+
+    <p>
+        The details are entered as below:
+    </p>
+    <ul>
+        <partial name="_PersonPartial" for="@Model" />
+       @* @Html.Partial("_PersonPartial", Model)*@
+        <li>
+            @Model?.IsMarried
+        </li>
+        <li>
+            @if (Model?.Age > 35)
+            {
+                <p>You are millenial with Age as @Model?.Age  and my name is @name </p>
+            }
+            else {
+                <p> You are Generation Z with Age as @Model?.Age </p>
+            }
+        </li>
+    </ul>
+</div>

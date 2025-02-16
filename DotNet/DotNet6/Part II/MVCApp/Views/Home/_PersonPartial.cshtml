@@ -1,0 +1,14 @@
+﻿<li>
+    @Model?.Name
+</li>
+<li>
+    @Model?.City
+</li>
+<li>
+    @Model?.Address
+</li>
+
+@Html.Raw("<br />")
+This is in JSON format
+
+@Json.Serialize(Model)

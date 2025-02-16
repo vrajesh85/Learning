@@ -1,8 +1,18 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home Page123";
 }
+
+@section Label{
+    MVC App Label Index Page
+}
+
+@section Footer{
+    MVC App Footer Index page
+}
+
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
+    <p>Title is @ViewBag.Title and layout is @ViewBag.Title2</p>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>

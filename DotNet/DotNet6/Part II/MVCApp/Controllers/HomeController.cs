@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MVCApp.Models;
 
@@ -22,9 +23,20 @@ namespace MVCApp.Controllers
             return View();
         }
 
+        public IActionResult Cubed() => View();
+
+        public IActionResult Cube(double num)
+        {
+            TempData["Value"] = num.ToString();
+            TempData["result"] = Math.Pow(num, 3).ToString();
+           
+            return RedirectToAction(nameof(Cubed));
+        }
+
         [HttpGet("{id:int}")]
         public IActionResult GetId(string id)
         {
+            ViewBag.Title = "Id";
             return View("Index");
         }
 
@@ -33,20 +45,27 @@ namespace MVCApp.Controllers
 
         [HttpPost("AddPerson")]
         public IActionResult AddPerson([FromBody]Person person)
-        {
+        {        
             if (ModelState.IsValid)
             {
                 _personRepository.Add(person);
             }
             else return BadRequest(ModelState);
 
-            return Ok();
+            //return View("ViewPerson", person);
+            return RedirectToAction("DisplayPerson",new { person });
         }
 
+        public IActionResult DisplayPerson(Person person) =>                   
+             View("ViewPerson", person?.Name == null ? new Person { Age = 39, Name = "Default", Address = "Not Available"} : null);
+        
+       
         public IActionResult GetResult(bool id)
         {
             return Ok(id);
         }
+
+        public IActionResult Html() => View("ViewHtml", (object)"<h3> This is a <b> string </b> </h3>");
 
         public IActionResult Privacy()
         {

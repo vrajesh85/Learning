@@ -12,6 +12,7 @@ namespace MVCApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDistributedMemoryCache();
 
             var app = builder.Build();
 
