@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <Folder Include="Behavioral\" />
-    <Folder Include="Structural\" />
+    <Folder Include="Structural\Bridge\" />
   </ItemGroup>
 
 </Project>

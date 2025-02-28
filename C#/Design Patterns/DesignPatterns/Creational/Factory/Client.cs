@@ -9,11 +9,11 @@ namespace DesignPatterns.Creational.Factory
     public class Client
     {    
         private IFactory _factory;
-        public Client(IFactory factory)         
+        public Client(IFactory factory)
         {
             _factory = factory;
         }
-        public Vehicle? Build(VehicleType type) => _factory.Create(type);        
+        public Vehicle? Build(VehicleType type) => _factory.Create(type);
     }
 
     public enum VehicleType
