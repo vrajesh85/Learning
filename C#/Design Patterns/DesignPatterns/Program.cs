@@ -1,12 +1,29 @@
-﻿using DesignPatterns.Creational.Factory;
+﻿using DesignPatterns.Creational.Builder;
+using DesignPatterns.Creational.Factory;
+using DesignPatterns.Creational.Singleton;
+using DesignPatterns.Structural.Command;
 using DesignPatterns.Structural.Composite.Pattern_1;
 using DesignPatterns.Structural.Composite.Pattern_2;
 using DesignPatterns.Structural.Decorator;
+using System.ComponentModel.DataAnnotations;
+using System.Windows.Input;
+using ICommand = DesignPatterns.Structural.Command.ICommand;
 
 namespace DesignPatterns
 {
     internal class Program
     {
+//Adapter
+//Decorator
+//Facade
+//Composite
+//Proxy
+//Observer
+//State
+//Strategy
+//Chain Of Responsibility
+
+
         static void Main(string[] args)
         {
             #region Creational
@@ -18,6 +35,29 @@ namespace DesignPatterns
             //objClient.Build(VehicleType.Four)?.Print();
             //objClient.Build(VehicleType.Three)?.Print();
             //objClient.Build(VehicleType.Two)?.Print();
+
+            #endregion
+
+            #region SingleTon
+
+            //var objThreadSafeSingleTon = ThreadSafeSingleTonWithoutLocks.Instance;
+
+            //var lazyThreadSafe = LazyThreadSafe.Instance;
+            #endregion
+
+            #region Builder
+
+            //var person = new PersonBuilder()
+            //                 .WithName("Rajesh")
+            //                 .WithAddress("Hyd")
+            //                 .WithAge(39)
+            //                 .Build();
+
+            //var person2 = new CompletePerson()
+            //                  .WithName("Rajesh")
+            //                  .WithAddress("Hyd")
+            //                  .WithAge(39);
+
 
             #endregion
 
@@ -87,6 +127,16 @@ namespace DesignPatterns
             //Dosa butter = new ButterDosa();
             //var objMasalaDosa = new MasalaDecorators(butter);
             //Console.WriteLine($"Your dosa is {objMasalaDosa.GetDescription()} and cost is {objMasalaDosa.GetCost()}");
+
+            #endregion
+
+            #region Command
+
+            IDevice device = new TV();
+            ICommand command = new Command(device);
+
+            command.TurnOn();
+            command.TurnOff();
 
             #endregion
 
