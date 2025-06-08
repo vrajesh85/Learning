@@ -11,7 +11,7 @@ const ButtonContainer = () => {
     );
 };
 
-const Button = (props) => {
+export const Button = (props) => {
     return (
         <>
               <button onClick={ () => props.setCount((prevScore) => props.count + prevScore + 1) }>Add</button>

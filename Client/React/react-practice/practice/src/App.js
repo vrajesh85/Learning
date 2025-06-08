@@ -10,7 +10,7 @@ import MultipleCounters from './Components/Class/MultipleCounters';
 import MultipleCountersFunc from './Components/Function/MultipleCountersFunc';
 import RefExampleParent from './Components/Class/RefExampleParent';
 import NumberGuessing from './Components/Function/NumberGuessing';
-import ButtonContainer from './Components/Function/ButtonContainer';
+import ButtonContainer , {Button} from './Components/Function/ButtonContainer';
 import RenderCounter from './Components/Function/RenderCounter';
 import TimerFunc from './Components/Function/TimerFunc';
 import ReducerCounter from './Components/Function/ReducerCounter';
