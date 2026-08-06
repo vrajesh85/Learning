@@ -1,0 +1,43 @@
+rawobject:
+  app: "user-authentication \n"
+  port: 9000
+  version: 1.8 
+
+prettifiedobject:
+  app: |
+    user-authentication 
+  port: 9000
+  version: 1.8
+
+listobjects:
+  - app: user-authentication
+    port: 9000
+    version: 1.0
+    deployed: true # boolean value
+  - app: user-validation
+    ports:
+    - 9000
+    version: 1.1
+    deployed: no # boolean value
+  - app: user-call
+    port: 9002
+    version: 1.2
+    deployed: on # boolean value
+
+person:
+  - name: Rajesh
+    age: 41
+    skills:
+    - C#
+    - Python
+    companies: [wipro, Deloitte, UHG]
+
+multilinestring: |
+  this is first line
+  this is second line
+  this is third line
+
+singlelinestring: >
+  this is first in singleline string,
+  this is second in singleline string,
+  this is third in singleline string
