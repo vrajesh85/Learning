@@ -66,20 +66,24 @@ app.UseMiddleware<TestingDIMiddleWareTwo>();
 //});
 
 
+
+
+//app.Use(async (context, next) =>
+//{
+//    if (context.Request.Method == "GET" && context.Request.Query["custom"] == "true")
+//    {
+//        // prevents subsequent middleware from assigning status code and status headers
+//        context.Response.ContentType = "text/plain";
+//        await context.Response.WriteAsync("This is custom middleware \n");
+//    }
+//    await next();
+//});
+
 app.Use(async (context, next) =>
 {
     await next();
     await context.Response.WriteAsync($" the status code is {context.Response.StatusCode}");
 });
-
-//app.Use(async (context, next) => {
-//    if (context.Request.Method == "GET" && context.Request.Query["custom"] == "true") {
-//        // prevents subsequent middleware from assigning status code and status headers
-//       context.Response.ContentType = "text/plain";
-//       await context.Response.WriteAsync("This is custom middleware \n");
-//    }       
-//    await next();
-//});
 
 //app.UseMiddleware<QueryStringMiddleWare>();
 

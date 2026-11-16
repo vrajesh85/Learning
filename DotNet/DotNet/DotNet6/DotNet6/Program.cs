@@ -3,10 +3,12 @@ using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
 builder.Services.Configure<MessageOptions>(options => {
     options.Name = "Rajesh";
     options.Age = 40;
 });
+
 
 
 var app = builder.Build();
